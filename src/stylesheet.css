@@ -22,7 +22,7 @@
     --alt-tab: #fffafa;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     :root {
         --background: #181a1b;
         --primary: #e0e6ed;
@@ -34,6 +34,21 @@
         --code: #23272e;
         --tab: #23272e;
         --alt-tab: #22252a
+    }
+} */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #232946;
+        --primary: #fffffe;
+        --secondary: #eebbc3;
+        --links: #b8c1ec;
+        --accent: #5a472c;
+        --marker-start: #ffcdd68c;
+        --marker-end: #ffcdd652;
+        --code: #121629
+        --tab: #393e6e;
+        --alt-tab: #2e325a;
     }
 }
 
@@ -84,7 +99,7 @@ body {
 }
 
 .blog-avatar {
-    width: 4.5em;
+    width: 3em;
     min-width: 2em;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
