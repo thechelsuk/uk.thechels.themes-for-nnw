@@ -308,3 +308,8 @@ table tr:nth-child(even) {
 table tr:hover {
     background-color: var(--code)
 }
+
+/** custom gruber star removal */
+a[title*="Permanent"] {
+    display: none;
+}
