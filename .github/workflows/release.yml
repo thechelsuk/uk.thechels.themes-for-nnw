@@ -1,0 +1,55 @@
+name: Release Theme
+
+on:
+    push:
+        paths:
+            - "package.json"
+        branches:
+            - main
+
+jobs:
+    build-and-release:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+
+            - name: Get version from package.json
+              id: get_version
+              run: |
+                  VERSION=$(jq -r .version package.json)
+                  echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+            - name: Zip src directory
+              run: |
+                  mkdir -p dist
+                  zip -r dist/thechelsuk.nnwtheme_v${{ steps.get_version.outputs.version }}.zip src
+
+            - name: Create NetNewsWire theme install link
+              id: nww_link
+              run: |
+                  ZIP_NAME=thechelsuk.nnwtheme_v${{ steps.get_version.outputs.version }}.zip
+                  ZIP_URL="https://github.com/thechelsuk/uk.thechels.themes.nnw/raw/main/dist/$ZIP_NAME"
+                  NWW_LINK="netnewswire://theme/add?url=$ZIP_URL"
+                  echo "nww_link=$NWW_LINK" >> $GITHUB_OUTPUT
+
+            - name: Create GitHub Release
+              uses: softprops/action-gh-release@v2
+              with:
+                  tag_name: v${{ steps.get_version.outputs.version }}
+                  name: Release v${{ steps.get_version.outputs.version }}
+                  body: |
+                      ## Install this theme in NetNewsWire
+                      [Install in NetNewsWire](${{ steps.nww_link.outputs.nww_link }})
+
+                      Or use this link:
+                      ${{ steps.nww_link.outputs.nww_link }}
+
+                  files: dist/thechelsuk.nnwtheme_v${{ steps.get_version.outputs.version }}.zip
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
