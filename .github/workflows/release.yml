@@ -26,10 +26,10 @@ jobs:
           id: prepare
           run: |
                 VERSION=$(jq -r .version package.json)
-                ZIP_NAME=thechelsuk.nnwtheme_guro.zip
+                ZIP_NAME=nnwtheme.zip
                 mkdir -p dist
                 zip -r dist/$ZIP_NAME src
-                ZIP_URL="https://github.com/thechelsuk/uk.thechels.themes.nnw.guro/releases/v$VERSION/download/$ZIP_NAME"
+                ZIP_URL="https://github.com/thechelsuk/uk.thechels.themes.nnw/releases/v$VERSION/download/$ZIP_NAME"
                 NNW_LINK="netnewswire://theme/add?url=$ZIP_URL"
                 echo "version=$VERSION" >> $GITHUB_OUTPUT
                 echo "zip_name=$ZIP_NAME" >> $GITHUB_OUTPUT
@@ -51,7 +51,7 @@ jobs:
 
               ## Install this theme in NetNewsWire
 
-              Download the `thechelsuk.nnwtheme.zip` file and add it manually in NetNewsWire.
+              Download the `nnwtheme.zip` file and add it manually in NetNewsWire.
 
-              [Install this theme in NetNewsWire](${{ steps.prepare.outputs.nnw_link }})
-            files: dist/thechelsuk.nnwtheme.zip
+              ${{ steps.prepare.outputs.nnw_link }}
+            files: dist/nnwtheme.zip
