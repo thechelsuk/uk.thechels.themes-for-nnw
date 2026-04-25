@@ -37,7 +37,7 @@ jobs:
         id: nnw_link
         run: |
           ZIP_NAME=thechelsuk.nnwtheme.zip
-          ZIP_URL="https://github.com/thechelsuk/uk.thechels.themes.nnw/releases/$VERSION/download/$ZIP_NAME"
+          ZIP_URL="https://github.com/thechelsuk/uk.thechels.themes.nnw/releases/v$VERSION/download/$ZIP_NAME"
           NNW_LINK="netnewswire://theme/add?url=$ZIP_URL"
           echo "nnw_link=$NNW_LINK" >> $GITHUB_OUTPUT
 
@@ -56,7 +56,7 @@ jobs:
 
             Download the `thechelsuk.nnwtheme.zip` file and add it manually in NetNewsWire.
 
-            [Install this theme in NetNewsWire](NNW_LINK)
+            [Install this theme in NetNewsWire](${{ steps.nnw_link.outputs.nnw_link }})
 
           files: dist/thechelsuk.nnwtheme.zip
         env:
