@@ -28,7 +28,7 @@ jobs:
                 VERSION=$(jq -r .version package.json)
                 ZIP_NAME=nnwtheme.zip
                 mkdir -p dist
-                zip -r dist/$ZIP_NAME src
+                (cd src && zip -r ../dist/$ZIP_NAME .)
                 ZIP_URL="https://github.com/thechelsuk/uk.thechels.themes.nnw/releases/v$VERSION/download/$ZIP_NAME"
                 NNW_LINK="netnewswire://theme/add?url=$ZIP_URL"
                 echo "version=$VERSION" >> $GITHUB_OUTPUT
