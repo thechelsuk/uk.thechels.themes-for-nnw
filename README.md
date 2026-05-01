@@ -1,18 +1,34 @@
 # uk.thechels.themes.nnw
 
-A theme for [NetNewsWire](https://netnewswire.com/) based on thechels.uk design.
+A collection of themes for [NetNewsWire](https://netnewswire.com/) based on thechels.uk design.
 
-## Install for use
+## Themes
 
-1. Download latest version
-2. Unzip it
-3. Open **thechelsuk.nnwtheme** and follow the prompts.
-4. Select “thechels.uk” in the NetNewsWire theme dropdown in settings.
+- **guro** — light mode only, clean and minimal
+- **thechelsuk** — adapts to light and dark mode, based on the thechels.uk website design
 
-## Build and deploy a new version
+## Install
 
-1. After making changes, increment the `src/Info.plist` Version.
-2. `cd` to the root directory of this project.
-3. Run `make`
-4. Commit and push changes to GitHub.
-5. Update the link on the [thechelsuk](https://thechels.uk/feeds) website to point to the latest version.
+1. Go to the [latest release](https://github.com/thechelsuk/uk.thechels.themes.nnw/releases/latest).
+2. Download `links.md` from the release assets.
+3. Open `links.md` and click **Install in NetNewsWire** next to the theme you want.
+4. Or download the `.zip` for your chosen theme, unzip it, and open the `.nnwtheme` file directly.
+
+## Release a new version
+
+1. Make changes inside the relevant `name.nnwtheme` folder (e.g. `guro.nnwtheme` or `thechelsuk.nnwtheme`).
+2. Update the `Version` in `name.nnwtheme/Info.plist`.
+3. Bump the version in `package.json`.
+4. Commit and push to `main` — the release workflow runs automatically.
+
+The workflow calls `scripts/build-release-artifacts.sh` to:
+
+- Package each `*.nnwtheme` folder into its own `name.zip`
+- Validate that each zip contains only the correct `name.nnwtheme` root
+- Generate `links.md` with per-theme download and NetNewsWire install links
+- Publish a GitHub Release with all zips and `links.md` attached
+
+## Adding a new theme
+
+1. Create a new `name.nnwtheme` folder in the repo root containing at minimum `Info.plist`, `stylesheet.css`, and `template.html`.
+2. No workflow changes needed — it discovers all `*.nnwtheme` folders automatically.
