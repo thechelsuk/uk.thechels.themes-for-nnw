@@ -25,20 +25,12 @@ fi
 
 rm -f dist/*.zip
 RELEASE_BODY_FILE="dist/release_body.md"
-LINKS_FILE="dist/links.md"
 NNW_LINKS=""
 
 {
   echo "## Themes"
   echo
 } > "$RELEASE_BODY_FILE"
-
-{
-  echo "# Theme Links"
-  echo
-  echo "Release v$VERSION"
-  echo
-} > "$LINKS_FILE"
 
 for THEME_DIR in "${THEME_DIRS[@]}"; do
   THEME_NAME="${THEME_DIR%.nnwtheme}"
@@ -67,15 +59,7 @@ for THEME_DIR in "${THEME_DIRS[@]}"; do
     echo
   } >> "$RELEASE_BODY_FILE"
 
-  {
-    echo "## $THEME_NAME"
-    echo
-    printf -- '- Download [%s](%s)\n' "$ZIP_NAME" "$ZIP_URL"
-    printf -- '- [Install in NetNewsWire](%s)\n' "$NNW_LINK"
-    echo
-  } >> "$LINKS_FILE"
-
-  NNW_LINKS+="- [Install $THEME_NAME in NetNewsWire]($NNW_LINK)"$'\n'
+  NNW_LINKS+="- $THEME_NAME: $NNW_LINK"$'\n'
 done
 
 {

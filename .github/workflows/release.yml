@@ -41,6 +41,4 @@ jobs:
                   tag_name: v${{ steps.prepare.outputs.version }}
                   name: Release v${{ steps.prepare.outputs.version }}
                   body_path: ${{ steps.prepare.outputs.body_path }}
-                  files: |
-                      dist/*.zip
-                      dist/links.md
+                  files: dist/*.zip

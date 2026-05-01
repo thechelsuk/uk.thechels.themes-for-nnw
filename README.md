@@ -10,9 +10,7 @@ A collection of themes for [NetNewsWire](https://netnewswire.com/) based on thec
 ## Install
 
 1. Go to the [latest release](https://github.com/thechelsuk/uk.thechels.themes-for-nnw/releases/latest).
-2. Download `links.md` from the release assets.
-3. Open `links.md` and click **Install in NetNewsWire** next to the theme you want.
-4. Or download the `.zip` for your chosen theme, unzip it, and open the `.nnwtheme` file directly.
+2. Download the `.zip` for your chosen theme, unzip it, and open the `.nnwtheme` file directly.
 
 ## Release a new version
 
@@ -25,8 +23,7 @@ The workflow calls `scripts/build-release-artifacts.sh` to:
 
 - Package each `*.nnwtheme` folder into its own `name.zip`
 - Validate that each zip contains only the correct `name.nnwtheme` root
-- Generate `links.md` with per-theme download and NetNewsWire install links
-- Publish a GitHub Release with all zips and `links.md` attached
+- Publish a GitHub Release with all zips attached
 
 ## Adding a new theme
 
