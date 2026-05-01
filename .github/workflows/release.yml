@@ -14,44 +14,44 @@ jobs:
     build-and-release:
         runs-on: ubuntu-latest
         steps:
-        - name: Checkout code
-          uses: actions/checkout@v6
+            - name: Checkout code
+              uses: actions/checkout@v6
 
-        - name: Set up Node.js
-          uses: actions/setup-node@v6
-          with:
-            node-version: "20"
+            - name: Set up Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: "20"
 
-        - name: Prepare variables and zip
-          id: prepare
-          run: |
-                VERSION=$(jq -r .version package.json)
-                ZIP_NAME=nnwtheme.zip
-                mkdir -p dist
-                (cd src && zip -r ../dist/$ZIP_NAME .)
-                ZIP_URL="https://github.com/thechelsuk/uk.thechels.themes.nnw/releases/v$VERSION/download/$ZIP_NAME"
-                NNW_LINK="netnewswire://theme/add?url=$ZIP_URL"
-                echo "version=$VERSION" >> $GITHUB_OUTPUT
-                echo "zip_name=$ZIP_NAME" >> $GITHUB_OUTPUT
-                echo "zip_url=$ZIP_URL" >> $GITHUB_OUTPUT
-                echo "nnw_link=$NNW_LINK" >> $GITHUB_OUTPUT
+            - name: Prepare variables and zip
+              id: prepare
+              run: |
+                  VERSION=$(jq -r .version package.json)
+                  ZIP_NAME=nnwtheme.zip
+                  mkdir -p dist
+                  (cd src && zip -r ../dist/$ZIP_NAME .)
+                  ZIP_URL="https://github.com/thechelsuk/uk.thechels.themes.nnw/releases/v$VERSION/download/$ZIP_NAME"
+                  NNW_LINK="netnewswire://theme/add?url=$ZIP_URL"
+                  echo "version=$VERSION" >> $GITHUB_OUTPUT
+                  echo "zip_name=$ZIP_NAME" >> $GITHUB_OUTPUT
+                  echo "zip_url=$ZIP_URL" >> $GITHUB_OUTPUT
+                  echo "nnw_link=$NNW_LINK" >> $GITHUB_OUTPUT
 
-        - name: Create GitHub Release
-          uses: softprops/action-gh-release@v3
-          env:
-             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            tag_name: v${{ steps.prepare.outputs.version }}
-            name: Release v${{ steps.prepare.outputs.version }}
-            body: |
-              ## thechelsuk
+            - name: Create GitHub Release
+              uses: softprops/action-gh-release@v3
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  tag_name: v${{ steps.prepare.outputs.version }}
+                  name: Release v${{ steps.prepare.outputs.version }}
+                  body: |
+                      ## thechelsuk
 
-              Based on the light and alt themes of my website, adjusted to match the light and darkness of the app.
-              Theme uses thechelsuk font included in the theme file as well as adapting to the device light/dark mode preference.
+                      Based on the light and alt themes of my website, adjusted to match the light and darkness of the app.
+                      Theme uses thechelsuk font included in the theme file as well as adapting to the device light/dark mode preference.
 
-              ## Install this theme in NetNewsWire
+                      ## Install this theme in NetNewsWire
 
-              Download the `nnwtheme.zip` file and add it manually in NetNewsWire.
+                      Download the `nnwtheme.zip` file and add it manually in NetNewsWire.
 
-              ${{ steps.prepare.outputs.nnw_link }}
-            files: dist/nnwtheme.zip
+                      ${{ steps.prepare.outputs.nnw_link }}
+                  files: dist/nnwtheme.zip
