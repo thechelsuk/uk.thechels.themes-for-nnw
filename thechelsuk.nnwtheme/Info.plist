@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>Name</key>
-	<string>thechelsuk</string>
+	<string>template</string>
 	<key>ThemeIdentifier</key>
 	<string>uk.thechels.themes.thechelsuk</string>
 	<key>CreatorHomePage</key>
@@ -11,6 +10,6 @@
 	<key>CreatorName</key>
 	<string>thechelsuk</string>
 	<key>Version</key>
-	<integer>3</integer>
+	<integer>4</integer>
 </dict>
 </plist>
