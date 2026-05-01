@@ -1,4 +1,4 @@
-# uk.thechels.themes.nnw
+# uk.thechels.themes-for-nnw
 
 A collection of themes for [NetNewsWire](https://netnewswire.com/) based on thechels.uk design.
 
