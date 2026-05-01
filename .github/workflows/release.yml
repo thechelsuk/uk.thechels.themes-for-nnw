@@ -26,9 +26,13 @@ jobs:
               id: prepare
               run: |
                   VERSION=$(jq -r .version package.json)
+                  THEME_DIR=thechelsuk.nnwtheme
                   ZIP_NAME=nnwtheme.zip
                   mkdir -p dist
-                  (cd src && zip -r ../dist/$ZIP_NAME .)
+                  rm -rf $THEME_DIR
+                  mkdir $THEME_DIR
+                  cp -R src/* $THEME_DIR/
+                  zip -r dist/$ZIP_NAME $THEME_DIR
                   ZIP_URL="https://github.com/thechelsuk/uk.thechels.themes.nnw/releases/v$VERSION/download/$ZIP_NAME"
                   NNW_LINK="netnewswire://theme/add?url=$ZIP_URL"
                   echo "version=$VERSION" >> $GITHUB_OUTPUT
