@@ -9,7 +9,7 @@ A collection of themes for [NetNewsWire](https://netnewswire.com/) based on thec
 
 ## Install
 
-1. Go to the [latest release](https://github.com/thechelsuk/uk.thechels.themes.nnw/releases/latest).
+1. Go to the [latest release](https://github.com/thechelsuk/uk.thechels.themes-for-nnw/releases/latest).
 2. Download `links.md` from the release assets.
 3. Open `links.md` and click **Install in NetNewsWire** next to the theme you want.
 4. Or download the `.zip` for your chosen theme, unzip it, and open the `.nnwtheme` file directly.
