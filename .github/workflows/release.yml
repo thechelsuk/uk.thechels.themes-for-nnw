@@ -24,21 +24,14 @@ jobs:
 
             - name: Prepare variables and zip
               id: prepare
+              shell: bash
               run: |
                   VERSION=$(jq -r .version package.json)
-                  THEME_DIR=thechelsuk.nnwtheme
-                  ZIP_NAME=nnwtheme.zip
-                  mkdir -p dist
-                  rm -rf $THEME_DIR
-                  mkdir $THEME_DIR
-                  cp -R src/* $THEME_DIR/
-                  zip -r dist/$ZIP_NAME $THEME_DIR
-                  ZIP_URL="https://github.com/thechelsuk/uk.thechels.themes.nnw/releases/v$VERSION/download/$ZIP_NAME"
-                  NNW_LINK="netnewswire://theme/add?url=$ZIP_URL"
+                  chmod +x scripts/build-release-artifacts.sh
+                  scripts/build-release-artifacts.sh "$VERSION" "$GITHUB_REPOSITORY"
+
                   echo "version=$VERSION" >> $GITHUB_OUTPUT
-                  echo "zip_name=$ZIP_NAME" >> $GITHUB_OUTPUT
-                  echo "zip_url=$ZIP_URL" >> $GITHUB_OUTPUT
-                  echo "nnw_link=$NNW_LINK" >> $GITHUB_OUTPUT
+                  echo "body_path=dist/release_body.md" >> $GITHUB_OUTPUT
 
             - name: Create GitHub Release
               uses: softprops/action-gh-release@v3
@@ -47,15 +40,7 @@ jobs:
               with:
                   tag_name: v${{ steps.prepare.outputs.version }}
                   name: Release v${{ steps.prepare.outputs.version }}
-                  body: |
-                      ## thechelsuk
-
-                      Based on the light and alt themes of my website, adjusted to match the light and darkness of the app.
-                      Theme uses thechelsuk font included in the theme file as well as adapting to the device light/dark mode preference.
-
-                      ## Install this theme in NetNewsWire
-
-                      Download the `nnwtheme.zip` file and add it manually in NetNewsWire.
-
-                      ${{ steps.prepare.outputs.nnw_link }}
-                  files: dist/nnwtheme.zip
+                  body_path: ${{ steps.prepare.outputs.body_path }}
+                  files: |
+                      dist/*.zip
+                      dist/links.md

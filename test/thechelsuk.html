@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Theme Test — The Chels NNW Theme</title>
+        <link rel="stylesheet" href="../thechelsuk.nnwtheme/stylesheet.css" />
+    </head>
+
+    <body>
+
+        <!-- ===================  BLOG BAR (feed identity strip)  ========================== -->
+        <div class="blog-bar">
+            <div class="blog-identity">
+                <img class="blog-avatar" id="nnwImageIcon" src="https://picsum.photos/seed/chels/48/48" height="48"
+                    width="48" alt="Feed avatar" />
+                <div class="blog-text">
+                    <div class="feedLink blog-title">
+                        <a href="https://example.blog/feed.xml">The Example Blog</a>
+                    </div>
+                    <div class="byline blog-slogan">
+                        Written by <a href="https://example.blog/about">Alex Mercer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <article class="flow">
+
+            <div class="articleTitle post-title flow">
+                <h1><a href="https://example.blog/posts/rss-renaissance">The RSS Renaissance: Why Indie Readers Are
+                        Thriving Again</a></h1>
+            </div>
+
+            <article id="bodyContainer" class="articleBody flow">
+
+                <p>
+                    It's 2026 and RSS is having a moment. After years of being dismissed as a
+                    relic of the early web, a quiet resurgence is underway — driven by reader
+                    fatigue with algorithmic timelines, a renewed interest in the <strong>open
+                        web</strong>, and a crop of beautifully crafted native apps that make
+                    following your favourite sites a genuine pleasure.
+                </p>
+
+                <p>
+                    NetNewsWire sits at the centre of that revival. Free, open-source, and built
+                    by a team that clearly cares about both craft and privacy, it has become the
+                    go-to feed reader for macOS and iOS users who want something that simply
+                    <em>gets out of the way</em> and lets them read.
+                </p>
+
+                <p>
+                    <a href="https://www.youtube.com/shorts/sQtW_IPB-Yk">
+                        Watch Short on YouTube
+                    </a>
+                </p>
+
+                <p>
+                    <a href="https://www.youtube.com/watch?v=6fCvy4-QKnA">
+                        Watch Video on YouTube
+                    </a>
+
+                </p>
+
+                <!-- Subheading -->
+                <h2>Why Algorithms Pushed Readers Back to RSS</h2>
+
+                <p>
+                    Social platforms promise to surface the content you care about, but the
+                    reality is a feed shaped by engagement metrics, advertiser priorities, and
+                    an opaque ranking system you can never fully audit. RSS is the antidote:
+                    a simple contract between publisher and reader where <strong>nothing is
+                        filtered, reordered, or withheld</strong>.
+                </p>
+
+                <blockquote>
+                    <p>"An RSS reader is the only place on the web where chronological order
+                        is still considered a feature, not a bug."</p>
+                </blockquote>
+
+                <p>
+                    The signal-to-noise ratio improvement alone is compelling. Once you curate
+                    your own subscription list, you read what you chose to read — and only
+                    that.
+                </p>
+
+                <!-- Subheading -->
+                <h2>What Makes a Great Article Theme?</h2>
+
+                <p>
+                    Native apps like NetNewsWire render articles using a local web view, which
+                    means designers can apply a full CSS stylesheet to every post. A well-crafted
+                    theme should handle all the common content patterns a blog might throw at it.
+                    Let's run through them.
+                </p>
+
+                <!-- H3 -->
+                <h3>Typography and Body Text</h3>
+
+                <p>
+                    Good typography is the foundation. Body text needs a comfortable line-height,
+                    a sensible measure (line length), and enough contrast against the background.
+                    Custom web fonts can add real personality — TheChels fonts used in this theme
+                    give articles a warm, characterful feel without sacrificing legibility.
+                </p>
+
+                <!-- Unordered list -->
+                <h3>Lists — Unordered</h3>
+
+                <p>The theme should style bullet lists clearly. Here are the qualities a good
+                    article theme needs:</p>
+
+                <ul>
+                    <li>Readable body font at a comfortable size and line-height</li>
+                    <li>A clear visual hierarchy across heading levels (h1–h3 at minimum)</li>
+                    <li>Distinct, accessible link colours in both light and dark mode</li>
+                    <li>Sensible blockquote styling to distinguish pulled quotes</li>
+                    <li>Code formatting that doesn't break on long lines</li>
+                    <li>Responsive images that never overflow the container</li>
+                </ul>
+
+                <!-- Ordered list -->
+                <h3>Lists — Ordered</h3>
+
+                <p>And if you're setting up NetNewsWire for the first time, here's the suggested
+                    order of operations:</p>
+
+                <ol>
+                    <li>Download NetNewsWire from the Mac App Store or the official site.</li>
+                    <li>Sign in with an iCloud, Feedbin, or Feedly account to sync across devices.</li>
+                    <li>Import an OPML file if you're migrating from another reader.</li>
+                    <li>Install a custom theme by dropping it into the correct Application Support folder.</li>
+                    <li>Set your preferred font size in Preferences → Reading.</li>
+                    <li>Sit back and enjoy the chronological, algorithm-free reading experience.</li>
+                </ol>
+
+                <!-- Image -->
+                <h3>Images</h3>
+
+                <p>
+                    Images should be display-block, constrained to the container width, and
+                    separated from body text with a subtle border. Here's a placeholder image
+                    to verify sizing and border rendering:
+                </p>
+
+                <img src="https://picsum.photos/seed/nnwtest/800/400"
+                    alt="A placeholder landscape photograph used to test image rendering" width="800" height="400" />
+
+                <p>
+                    And here's a smaller, floated image to check that prose wraps around it
+                    correctly when the <code>.floated</code> class is applied:
+                </p>
+
+                <img class="floated" src="https://picsum.photos/seed/avatar2/120/120"
+                    alt="A small placeholder square image" width="120" height="120" />
+
+                <p>
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+                    ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget,
+                    tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
+                    ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est
+                    et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed,
+                    commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
+                    condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                </p>
+
+                <div class="clearfix"></div>
+
+                <!-- Code -->
+                <h3>Inline Code and Code Blocks</h3>
+
+                <p>
+                    Inline code like <code>font-family: TheChelsLight, sans-serif</code> should
+                    be visually distinct from body text. Larger blocks should be formatted as
+                    preformatted text:
+                </p>
+
+                <pre><code>/* Basic NNW theme variables */
+:root {
+    --background: #f5f4f4;
+    --primary:    #04100d;
+    --secondary:  #005ca3;
+    --links:      #295147;
+    --accent:     #cec452;
+}</code></pre>
+
+                <p>
+                    This makes it easy to share configuration snippets, terminal commands, or
+                    code examples without losing formatting.
+                </p>
+
+                <!-- Table -->
+                <h2>Comparing Popular Feed Readers</h2>
+
+                <p>
+                    Not everyone will choose NetNewsWire. Here's a quick comparison of leading
+                    RSS clients to help you pick the right tool:
+                </p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>App</th>
+                            <th>Platform</th>
+                            <th>Price</th>
+                            <th>Sync Backend</th>
+                            <th>Open Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NetNewsWire</td>
+                            <td>macOS / iOS</td>
+                            <td>Free</td>
+                            <td>iCloud, Feedbin, Feedly</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Reeder 5</td>
+                            <td>macOS / iOS</td>
+                            <td>One-time purchase</td>
+                            <td>Feedbin, Feedly, Feed Wrangler</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>Lire</td>
+                            <td>iOS / iPadOS</td>
+                            <td>One-time purchase</td>
+                            <td>Feedly, Feedbin</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>FreshRSS</td>
+                            <td>Web / Self-hosted</td>
+                            <td>Free</td>
+                            <td>Self-hosted</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Inoreader</td>
+                            <td>Web / iOS / Android</td>
+                            <td>Free / Pro tier</td>
+                            <td>Own servers</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Second blockquote -->
+                <h2>A Word on Dark Mode</h2>
+
+                <p>
+                    Dark mode support is non-negotiable these days. A properly implemented
+                    <code>@media (prefers-color-scheme: dark)</code> block should swap every
+                    colour token so that neither the background nor the text require squinting
+                    at either end of the day.
+                </p>
+
+                <blockquote>
+                    <p>"If your theme only works in light mode, you've only done half the job."</p>
+                </blockquote>
+
+                <p>
+                    The TheChels theme ships with a dark palette that swaps the warm off-white
+                    background for a deep midnight-blue, and softens all the accent colours
+                    accordingly. Toggle your system appearance to test both modes.
+                </p>
+
+                <!-- Final paragraph -->
+                <h2>Wrapping Up</h2>
+
+                <p>
+                    Building a custom theme for NetNewsWire is a deeply satisfying project. You
+                    get to apply real CSS typography work to a context where it genuinely
+                    improves someone's daily reading experience. Start with the CSS custom
+                    properties, get your font stack right, then layer in the heading hierarchy,
+                    list styles, table, and code blocks one at a time.
+                </p>
+
+                <p>
+                    If you've created a theme you're proud of, the NetNewsWire community is
+                    welcoming — share it in the <a href="https://github.com/Ranchero-Software/NetNewsWire">GitHub
+                        repo</a>
+                    or the <a href="https://netnewswire.com">community forum</a> and let others
+                    enjoy your work.
+                </p>
+
+                <p><a title="Permanent link to ‘Anthropic’s New Claude Mythos Is So Good at Finding and Exploiting Vulnerabilities That They’re Not Releasing It to the Public’"
+                        href="https://daringfireball.net/linked/2026/04/08/claude-mythos-exploits">&nbsp;★&nbsp;</a></p>
+
+                </div><!-- /articleBody -->
+                <div id="footer" class="footer flow">
+                    <div class="meta flow">
+                        <div class="articleDateline">
+                            <a href="https://example.blog/posts/rss-renaissance">17 March 2026 at 09:30</a>
+                        </div>
+                        <div class="externalLink">
+                            <a href="https://example.blog/posts/rss-renaissance">example.blog/posts/rss-renaissance</a>
+                        </div>
+                    </div>
+                </div><!-- /footer -->
+
+        </article>
+
+    </body>
+
+</html>

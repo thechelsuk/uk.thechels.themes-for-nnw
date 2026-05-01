@@ -1,0 +1,338 @@
+@font-face {
+    font-family: "TheChelsLight";
+    src: url("TheChelsLight.woff") format("woff")
+}
+
+@font-face {
+    font-family: "TheChelsMedium";
+    src: url("TheChelsMedium.woff") format("woff");
+    font-weight: bold
+}
+
+:root {
+    --background: #ffffff;
+    --primary: #053529;
+    --secondary: #157ac7;
+    --links: #1b4f42;
+    --accent: #11bbd1;
+    --marker-start: #ef72858c;
+    --marker-end: #ffb6c14d;
+    --code: #a7adb4;
+    --code-inline-bg: #f2f8fb;
+    --code-inline-text: #0f4b5f;
+    --code-block-bg: #f7fbfd;
+    --code-block-border: #cfe3ec;
+    --tab: #46b3f3;
+    --alt-tab: #4098eb;
+    --table-border: #cfe8ef;
+    --table-cell-border: #deedf2;
+    --table-head-bg: #def1f8;
+    --table-head-text: #0b4f65;
+    --table-head-divider: #bddce7;
+    --table-row-alt-bg: #f8fcfe;
+    --table-row-hover-bg: #e1f3f9;
+}
+
+.font-stack {
+    font-family: TheChelsLight, -system-ui, "Gill Sans", sans-serif
+}
+
+.font-mono {
+    font-family: "JetBrains Mono", "SF Mono", ui-monospace, monospace, "Courier New"
+}
+
+html {
+    font-size: 100%;
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: TheChelsLight, -system-ui, "Gill Sans", sans-serif;
+    color: var(--primary);
+    background: var(--background);
+    box-sizing: border-box;
+    max-width: 48em;
+    margin: 0 auto;
+    padding: 1.5em;
+}
+
+.flow>*+* {
+    margin-block-start: var(--flow-space, 1em)
+}
+
+.stack>*+* {
+    margin-block-start: 1.5em
+}
+
+
+.blog-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    padding-bottom: 1em;
+    border-bottom: 2px solid var(--accent)
+}
+
+.blog-identity {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 0.5em
+}
+
+.blog-avatar {
+    width: 2.5em;
+    min-width: 2.5em;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    flex-shrink: 0;
+    order: 2;
+    margin-left: auto;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--accent)
+}
+
+.blog-text {
+    display: flex;
+    order: 1;
+    flex-direction: column;
+    justify-content: center
+}
+
+.blog-title {
+    font-size: 1.5em;
+    font-family: TheChelsMedium, -system-ui, "Gill Sans", sans-serif;
+    line-height: 1;
+    outline: none
+}
+
+.blog-title a {
+    text-decoration: none;
+    color: var(--primary)
+}
+
+.blog-slogan {
+    font-size: 0.9em;
+    color: var(--secondary);
+    margin-top: 0.2em
+}
+
+
+.highlight>pre {
+    margin: 0
+}
+
+.footer {
+    border-top: 2px solid var(--accent);
+    display: block;
+    width: 100%;
+}
+
+.meta {
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 0.8em;
+    margin-top: 1.5em
+}
+
+.meta>*+* {
+    margin-block-start: 0
+}
+
+.externalLink {
+    order: 1
+}
+
+:is(.articleDateline, .articleDatelineTitle) {
+    order: 2;
+    margin-left: auto;
+    text-align: right
+}
+
+
+:is(h1, h2, h3, h4, h5, h6) {
+    color: var(--primary);
+    position: relative;
+    display: block;
+    font-family: TheChelsMedium, -system-ui, "Gill Sans", sans-serif
+}
+
+
+:is(h1, h2, h3, h4, h5, h6) a {
+    text-decoration: none;
+    color: var(--primary)
+}
+
+:is(h1, h2, h3, h4, h5, h6) a:hover {
+    text-decoration: none
+}
+
+:is(h1, h2, h3, h4, h5, h6) a:focus {
+    text-decoration: none
+}
+
+ol li::marker {
+    color: var(--primary)
+}
+
+ul li::marker {
+    color: var(--accent)
+}
+
+:is(ul, ol) {
+    margin-block: 1em;
+    padding-inline-start: 1.5em
+}
+
+:is(ul, ol) li {
+    margin-bottom: 0.5em
+}
+
+p {
+    line-height: 1.4
+}
+
+strong,
+b {
+    font-family: TheChelsMedium;
+    font-weight: bold
+}
+
+a {
+    color: var(--links)
+}
+
+a:hover,
+a:focus,
+a:active {
+    color: var(--accent);
+    transition: color 4s ease-in-out;
+    text-decoration: underline
+}
+
+.codeblock {
+    font-family: "JetBrains Mono", "SF Mono", ui-monospace, monospace, "Courier New";
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: var(--primary);
+    background: var(--code-block-bg);
+    border: 1px solid var(--code-block-border);
+    border-radius: 0.75em;
+    padding: 0.875em 1em;
+    overflow-x: auto;
+    tab-size: 4
+}
+
+pre,
+code {
+    font-family: "JetBrains Mono", "SF Mono", ui-monospace, monospace, "Courier New";
+    tab-size: 4
+}
+
+pre {
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: var(--primary);
+    background: var(--code-block-bg);
+    border: 1px solid var(--code-block-border);
+    border-radius: 0.75em;
+    padding: 0.875em 1em;
+    overflow-x: auto
+}
+
+code {
+    font-size: 0.85em;
+    color: var(--code-inline-text);
+    background: var(--code-inline-bg);
+    border-radius: 0.4em;
+    padding: 0.15em 0.4em
+}
+
+pre>code {
+    font-size: inherit;
+    color: inherit;
+    background: transparent;
+    border-radius: 0;
+    padding: 0
+}
+
+blockquote,
+cite {
+    padding: 0 1em;
+    border-left: 0.25em solid var(--accent);
+    width: 90%;
+    margin-left: 0.625em
+}
+
+.footnote {
+    font-size: 0.8em;
+    color: var(--secondary)
+}
+
+.footnote sup {
+    color: var(--primary);
+    margin-right: 0.3125em
+}
+
+.posts {
+    margin-left: 0;
+    padding-left: 0;
+    transition: all 0.1s
+}
+
+.floated {
+    float: left;
+    vertical-align: top;
+    margin-right: 1.4em;
+    margin-top: 0.8em
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both
+}
+
+.content {
+    position: relative
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--primary)
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--table-border)
+}
+
+table th,
+table td {
+    padding: 0.5em;
+    text-align: left;
+    border: 1px solid var(--table-cell-border)
+}
+
+table th {
+    background-color: var(--table-head-bg);
+    color: var(--table-head-text);
+    border-bottom: 1px solid var(--table-head-divider)
+}
+
+table tr:nth-child(even) {
+    background-color: var(--table-row-alt-bg)
+}
+
+table tr:hover {
+    background-color: var(--table-row-hover-bg)
+}
