@@ -1,6 +1,6 @@
 # Theme Bundle for NetNewsWire
 
-A collection of themes for [NetNewsWire](https://netnewswire.com/) based on thechels.uk design.
+A collection of themes for [NetNewsWire](https://netnewswire.com/).
 
 ## Themes
 
