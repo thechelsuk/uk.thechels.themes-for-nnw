@@ -1,11 +1,12 @@
-# uk.thechels.themes-for-nnw
+# Theme Bundle for NetNewsWire
 
 A collection of themes for [NetNewsWire](https://netnewswire.com/) based on thechels.uk design.
 
 ## Themes
 
-- **guro** — light mode only, clean and minimal
-- **thechelsuk** — adapts to light and dark mode, based on the thechels.uk website design
+- guro; a light mode only, clean and minimal
+- thechelsuk; adaptive to device light/dark mode and is based on the thechels.uk website design
+- retro; dark only theme, red text.
 
 ## Install
 
