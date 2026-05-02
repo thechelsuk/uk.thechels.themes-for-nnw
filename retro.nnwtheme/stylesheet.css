@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap");
+
 @font-face {
     font-family: "TheChelsLight";
     src: url("TheChelsLight.woff") format("woff")
@@ -10,27 +12,28 @@
 }
 
 :root {
-    --background: #ffffff;
-    --primary: #053529;
-    --secondary: #157ac7;
-    --links: #1b4f42;
-    --accent: #11bbd1;
-    --marker-start: #ef72858c;
-    --marker-end: #ffb6c14d;
-    --code: #a7adb4;
-    --code-inline-bg: #f2f8fb;
-    --code-inline-text: #0f4b5f;
-    --code-block-bg: #f7fbfd;
-    --code-block-border: #cfe3ec;
-    --tab: #46b3f3;
-    --alt-tab: #4098eb;
-    --table-border: #cfe8ef;
-    --table-cell-border: #deedf2;
-    --table-head-bg: #def1f8;
-    --table-head-text: #0b4f65;
-    --table-head-divider: #bddce7;
-    --table-row-alt-bg: #f8fcfe;
-    --table-row-hover-bg: #e1f3f9;
+    --background: #0b0507;
+    --surface: #15090c;
+    --primary: #ff3b3b;
+    --secondary: #dd6275;
+    --links: #ff9eaa;
+    --accent: #ff4963;
+    --marker-start: #ff5c73a3;
+    --marker-end: #5b0f1b8a;
+    --code: #f4b6bf;
+    --code-inline-bg: #261014;
+    --code-inline-text: #ffb9c4;
+    --code-block-bg: #1a0c10;
+    --code-block-border: #5c1f2a;
+    --tab: #ff4a65;
+    --alt-tab: #d73752;
+    --table-border: #58202a;
+    --table-cell-border: #4a1822;
+    --table-head-bg: #341118;
+    --table-head-text: #ff9eaa;
+    --table-head-divider: #6a2632;
+    --table-row-alt-bg: #150b0d;
+    --table-row-hover-bg: #231014;
 }
 
 .font-stack {
@@ -45,6 +48,7 @@ html {
     font-size: 100%;
     height: 100%;
     scroll-behavior: smooth;
+    color-scheme: dark;
 }
 
 body {
@@ -52,9 +56,9 @@ body {
     color: var(--primary);
     background: var(--background);
     box-sizing: border-box;
-    max-width: 48em;
+    max-width: 42em;
     margin: 0 auto;
-    padding: 1.5em;
+    padding: 2.6em 1.35em 4em;
 }
 
 .flow>*+* {
@@ -69,28 +73,29 @@ body {
 .blog-bar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 0.5em;
-    padding-bottom: 1em;
-    border-bottom: 2px solid var(--accent)
+    gap: 0.8em;
+    padding: 0.1em 0 1.2em;
+    border-bottom: 1px solid #5f1d2a
 }
 
 .blog-identity {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
-    gap: 0.5em
+    gap: 0.65em
 }
 
 .blog-avatar {
-    width: 2.5em;
-    min-width: 2.5em;
+    width: 2.2em;
+    min-width: 2.2em;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     flex-shrink: 0;
-    order: 2;
-    margin-left: auto;
+    order: 0;
+    margin-left: 0;
     position: relative;
     overflow: hidden;
     border: 2px solid var(--accent)
@@ -100,13 +105,15 @@ body {
     display: flex;
     order: 1;
     flex-direction: column;
-    justify-content: center
+    justify-content: center;
+    text-align: center
 }
 
 .blog-title {
-    font-size: 1.5em;
-    font-family: TheChelsMedium, -system-ui, "Gill Sans", sans-serif;
+    font-size: 1.35em;
+    font-family: "Space Grotesk", TheChelsMedium, -system-ui, "Gill Sans", sans-serif;
     line-height: 1;
+    letter-spacing: 0.015em;
     outline: none
 }
 
@@ -116,9 +123,22 @@ body {
 }
 
 .blog-slogan {
-    font-size: 0.9em;
+    font-size: 0.82em;
     color: var(--secondary);
+    letter-spacing: 0.02em;
     margin-top: 0.2em
+}
+
+.articleTitle {
+    text-align: center;
+    margin: 2.4em auto 1.5em;
+}
+
+.articleTitle h1 {
+    margin: 0;
+    line-height: 1.08;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
 }
 
 
@@ -127,7 +147,7 @@ body {
 }
 
 .footer {
-    border-top: 2px solid var(--accent);
+    border-top: 1px solid var(--accent);
     display: block;
     width: 100%;
 }
@@ -136,9 +156,15 @@ body {
     color: var(--secondary);
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.4em;
     width: 100%;
-    font-size: 0.8em;
-    margin-top: 1.5em
+    font-size: 0.78em;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 1.35em auto 0.2em;
+    text-align: center
 }
 
 .meta>*+* {
@@ -146,13 +172,14 @@ body {
 }
 
 .externalLink {
-    order: 1
+    order: 0;
+    word-break: break-word
 }
 
 :is(.articleDateline, .articleDatelineTitle) {
-    order: 2;
-    margin-left: auto;
-    text-align: right
+    order: 0;
+    margin-left: 0;
+    text-align: center
 }
 
 
@@ -160,7 +187,7 @@ body {
     color: var(--primary);
     position: relative;
     display: block;
-    font-family: TheChelsMedium, -system-ui, "Gill Sans", sans-serif
+    font-family: "Space Grotesk", TheChelsMedium, -system-ui, "Gill Sans", sans-serif
 }
 
 
@@ -195,7 +222,9 @@ ul li::marker {
 }
 
 p {
-    line-height: 1.4
+    line-height: 1.72;
+    margin-block: 1.1em;
+    max-width: 70ch
 }
 
 strong,
@@ -212,8 +241,10 @@ a:hover,
 a:focus,
 a:active {
     color: var(--accent);
-    transition: color 4s ease-in-out;
-    text-decoration: underline
+    transition: color 0.2s ease-in-out;
+    text-decoration: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.12em
 }
 
 .codeblock {
@@ -310,6 +341,28 @@ img {
     border: 1px solid var(--primary)
 }
 
+#bodyContainer {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: 1.2em 0.9em 2.4em;
+    }
+
+    .blog-title {
+        font-size: 1.3em;
+    }
+
+    .articleTitle {
+        margin-top: 1.35em;
+    }
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -336,6 +389,7 @@ table tr:nth-child(even) {
 table tr:hover {
     background-color: var(--table-row-hover-bg)
 }
+
 
 /** custom gruber star removal */
 a[title*="Permanent"] {
