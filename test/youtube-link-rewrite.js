@@ -1,7 +1,7 @@
 // Augment YouTube article links with an inline embed and an app deep link.
 (function () {
-    const APP_LINK_LABEL = "Open in X.app";
-    const APP_URL_PREFIX = "x://?videoURL=";
+    const APP_LINK_LABEL = "Open in x.app";
+    const APP_URL_PREFIX = "https://vid.thechels.uk/?v=";
     const PROCESSED_ATTRIBUTE = "data-youtube-enhanced";
 
     function isYouTubeHostname(hostname) {
@@ -87,7 +87,6 @@
         appLink.className = "nnw-youtube-app-link";
         appLink.href = `${APP_URL_PREFIX}${encodeURIComponent(videoInfo.canonicalUrl)}`;
         appLink.textContent = APP_LINK_LABEL;
-
         actions.appendChild(appLink);
 
         wrapper.appendChild(frame);

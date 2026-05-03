@@ -4,12 +4,12 @@
 	<key>Name</key>
 	<string>template</string>
 	<key>ThemeIdentifier</key>
-	<string>uk.thechels.themes.guro</string>
+	<string>uk.thechels.themes.Guro</string>
 	<key>CreatorHomePage</key>
 	<string>https://thechels.uk/</string>
 	<key>CreatorName</key>
 	<string>thechelsuk</string>
 	<key>Version</key>
-	<integer>4</integer>
+	<integer>5</integer>
 </dict>
 </plist>
