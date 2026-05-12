@@ -59,6 +59,8 @@ body {
     max-width: 42em;
     margin: 0 auto;
     padding: 2.6em 1.35em 4em;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .flow>*+* {
@@ -188,6 +190,7 @@ body {
     position: relative;
     display: block;
     font-family: "Space Grotesk", TheChelsMedium, -system-ui, "Gill Sans", sans-serif
+    ;text-wrap: balance;
 }
 
 
@@ -224,7 +227,9 @@ ul li::marker {
 p {
     line-height: 1.72;
     margin-block: 1.1em;
-    max-width: 70ch
+    max-width: 70ch;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 strong,
@@ -337,8 +342,10 @@ cite {
 img {
     display: block;
     max-width: 100%;
+    width: 100%;
     height: auto;
-    border: 1px solid var(--primary)
+    border: 1px solid var(--primary);
+    box-sizing: border-box;
 }
 
 #bodyContainer {
