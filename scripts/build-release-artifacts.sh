@@ -26,8 +26,12 @@ fi
 rm -f dist/*.zip
 RELEASE_BODY_FILE="dist/release_body.md"
 NNW_LINKS=""
+LAST_COMMIT_MESSAGE="$(git log -1 --pretty=%B)"
 
 {
+  echo
+  echo  printf '%s\n' "$LAST_COMMIT_MESSAGE"
+  echo
   echo "## Themes"
   echo
 } > "$RELEASE_BODY_FILE"
