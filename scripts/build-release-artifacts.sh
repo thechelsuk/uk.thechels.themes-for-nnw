@@ -26,11 +26,11 @@ fi
 rm -f dist/*.zip
 RELEASE_BODY_FILE="dist/release_body.md"
 NNW_LINKS=""
-LAST_COMMIT_MESSAGE="$(git log -1 --pretty=%B)"
+LAST_COMMIT_MESSAGE="$(git log -1 --pretty=%B | awk 'NR==1{print; exit}' | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//; s/^(.+?[.!?]) .*$/\1/')"
 
 {
   echo
-  echo  printf '%s\n' "$LAST_COMMIT_MESSAGE"
+  echo  $LAST_COMMIT_MESSAGE
   echo
   echo "## Themes"
   echo
