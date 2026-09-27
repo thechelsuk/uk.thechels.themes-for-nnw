@@ -108,7 +108,8 @@
                 current.classList?.contains("meta") ||
                 current.classList?.contains("articleTitle") ||
                 current.classList?.contains("post-title") ||
-                current.classList?.contains("blog-bar")
+                current.classList?.contains("blog-bar") ||
+                current.classList?.contains("nnw-youtube-actions")
             ) {
                 return true;
             }

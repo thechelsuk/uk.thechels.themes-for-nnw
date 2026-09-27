@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Theme Test — Claudio NNW Theme</title>
+        <link rel="stylesheet" href="../Claudio.nnwtheme/stylesheet.css" />
+    </head>
+
+    <body>
+
+        <div class="claudio-progress" id="claudioProgress" aria-hidden="true"></div>
+
+        <header class="masthead">
+            <div class="kicker">
+                <img class="kicker-avatar" id="nnwImageIcon" src="https://picsum.photos/48" height="20" width="20" alt="" />
+                <a class="kicker-feed" href="https://example.blog/feed.xml">Claudio Theme Blog</a>
+                <span class="kicker-sep" aria-hidden="true">·</span>
+                <span class="kicker-date">17 Mar 2026</span>
+                <span class="kicker-sep kicker-readtime-sep" aria-hidden="true">·</span>
+                <span class="kicker-readtime" id="claudioReadTime"></span>
+            </div>
+            <div class="articleTitle post-title">
+                <h1><a href="https://example.blog/posts/rss-renaissance">The RSS Renaissance: Why Indie Readers Are
+                        Thriving Again</a></h1>
+            </div>
+            <div class="byline">Written by <a href="https://example.blog/about">Alex Mercer</a></div>
+        </header>
+
+        <article class="flow">
+
+            <div id="bodyContainer" class="articleBody flow mediumText">
+
+                <p>
+                    It's 2026 and RSS is having a moment. After years of being dismissed as a
+                    relic of the early web, a quiet resurgence is underway — driven by reader
+                    fatigue with algorithmic timelines, a renewed interest in the <strong>open
+                        web</strong>, and a crop of beautifully crafted native apps that make
+                    following your favourite sites a genuine pleasure.
+                </p>
+
+                <p>
+                    NetNewsWire sits at the centre of that revival. Free, open-source, and built
+                    by a team that clearly cares about both craft and privacy, it has become the
+                    go-to feed reader for macOS and iOS users who want something that simply
+                    <em>gets out of the way</em> and lets them read.
+                </p>
+
+                <p>
+                    <a href="https://www.youtube.com/shorts/sQtW_IPB-Yk">
+                        Watch Short on YouTube
+                    </a>
+                </p>
+
+                <p>
+                    <a href="https://www.youtube.com/watch?v=6fCvy4-QKnA">
+                        Watch Video on YouTube
+                    </a>
+
+                </p>
+
+                <!-- Subheading -->
+                <h2>Why Algorithms Pushed Readers Back to RSS</h2>
+
+                <p>
+                    Social platforms promise to surface the content you care about, but the
+                    reality is a feed shaped by engagement metrics, advertiser priorities, and
+                    an opaque ranking system you can never fully audit. RSS is the antidote:
+                    a simple contract between publisher and reader where <strong>nothing is
+                        filtered, reordered, or withheld</strong>.
+                </p>
+
+                <blockquote>
+                    <p>"An RSS reader is the only place on the web where chronological order
+                        is still considered a feature, not a bug."</p>
+                </blockquote>
+
+                <p>
+                    The signal-to-noise ratio improvement alone is compelling. Once you curate
+                    your own subscription list, you read what you chose to read — and only
+                    that.
+                </p>
+
+                <!-- Subheading -->
+                <h2>What Makes a Great Article Theme?</h2>
+
+                <p>
+                    Native apps like NetNewsWire render articles using a local web view, which
+                    means designers can apply a full CSS stylesheet to every post. A well-crafted
+                    theme should handle all the common content patterns a blog might throw at it.
+                    Let's run through them.
+                </p>
+
+                <!-- H3 -->
+                <h3>Typography and Body Text</h3>
+
+                <p>
+                    Good typography is the foundation. Body text needs a comfortable line-height,
+                    a sensible measure (line length), and enough contrast against the background.
+                    Custom web fonts can add real personality — the system serif used in this theme
+                    give articles a warm, characterful feel without sacrificing legibility.
+                </p>
+
+                <!-- Unordered list -->
+                <h3>Lists — Unordered</h3>
+
+                <p>The theme should style bullet lists clearly. Here are the qualities a good
+                    article theme needs:</p>
+
+                <ul>
+                    <li>Readable body font at a comfortable size and line-height</li>
+                    <li>A clear visual hierarchy across heading levels (h1–h3 at minimum)</li>
+                    <li>Distinct, accessible link colours in both light and dark mode</li>
+                    <li>Sensible blockquote styling to distinguish pulled quotes</li>
+                    <li>Code formatting that doesn't break on long lines</li>
+                    <li>Responsive images that never overflow the container</li>
+                </ul>
+
+                <!-- Ordered list -->
+                <h3>Lists — Ordered</h3>
+
+                <p>And if you're setting up NetNewsWire for the first time, here's the suggested
+                    order of operations:</p>
+
+                <ol>
+                    <li>Download NetNewsWire from the Mac App Store or the official site.</li>
+                    <li>Sign in with an iCloud, Feedbin, or Feedly account to sync across devices.</li>
+                    <li>Import an OPML file if you're migrating from another reader.</li>
+                    <li>Install a custom theme by dropping it into the correct Application Support folder.</li>
+                    <li>Set your preferred font size in Preferences → Reading.</li>
+                    <li>Sit back and enjoy the chronological, algorithm-free reading experience.</li>
+                </ol>
+
+                <!-- Image -->
+                <h3>Images</h3>
+
+                <p>
+                    Images should be display-block, constrained to the container width, and
+                    separated from body text with a subtle border. Here's a placeholder image
+                    to verify sizing and border rendering:
+                </p>
+
+                <img src="https://picsum.photos/800"
+                    alt="A placeholder landscape photograph used to test image rendering" width="800" height="400" />
+
+                <p>
+                    And here's a smaller, floated image to check that prose wraps around it
+                    correctly when the <code>.floated</code> class is applied:
+                </p>
+
+                <img class="floated" src="https://picsum.photos/seed/avatar2/120/120"
+                    alt="A small placeholder square image" width="120" height="120" />
+
+                <p>
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+                    ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget,
+                    tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
+                    ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est
+                    et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed,
+                    commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
+                    condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                </p>
+
+                <div class="clearfix"></div>
+
+                <!-- Code -->
+                <h3>Inline Code and Code Blocks</h3>
+
+                <p>
+                    Inline code like <code>font-family: TheChelsLight, sans-serif</code> should
+                    be visually distinct from body text. Larger blocks should be formatted as
+                    preformatted text:
+                </p>
+
+                <pre><code>/* Basic NNW theme variables */
+:root {
+    --background: #f5f4f4;
+    --primary:    #04100d;
+    --secondary:  #005ca3;
+    --links:      #295147;
+    --accent:     #cec452;
+}</code></pre>
+
+                <p>
+                    This makes it easy to share configuration snippets, terminal commands, or
+                    code examples without losing formatting.
+                </p>
+
+                <!-- Table -->
+                <h2>Comparing Popular Feed Readers</h2>
+
+                <p>
+                    Not everyone will choose NetNewsWire. Here's a quick comparison of leading
+                    RSS clients to help you pick the right tool:
+                </p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>App</th>
+                            <th>Platform</th>
+                            <th>Price</th>
+                            <th>Sync Backend</th>
+                            <th>Open Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NetNewsWire</td>
+                            <td>macOS / iOS</td>
+                            <td>Free</td>
+                            <td>iCloud, Feedbin, Feedly</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Reeder 5</td>
+                            <td>macOS / iOS</td>
+                            <td>One-time purchase</td>
+                            <td>Feedbin, Feedly, Feed Wrangler</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>Lire</td>
+                            <td>iOS / iPadOS</td>
+                            <td>One-time purchase</td>
+                            <td>Feedly, Feedbin</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>FreshRSS</td>
+                            <td>Web / Self-hosted</td>
+                            <td>Free</td>
+                            <td>Self-hosted</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Inoreader</td>
+                            <td>Web / iOS / Android</td>
+                            <td>Free / Pro tier</td>
+                            <td>Own servers</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Second blockquote -->
+                <h2>A Word on Dark Mode</h2>
+
+                <p>
+                    Dark mode support is non-negotiable these days. A properly implemented
+                    <code>@media (prefers-color-scheme: dark)</code> block should swap every
+                    colour token so that neither the background nor the text require squinting
+                    at either end of the day.
+                </p>
+
+                <blockquote>
+                    <p>"If your theme only works in light mode, you've only done half the job."</p>
+                </blockquote>
+
+                <p>
+                    Claudio is dark-only: a warm charcoal background with cream text and a clay
+                    accent, tuned for long reads at night. There is no light variant to
+                    toggle.
+                </p>
+
+                <!-- Test URL References Section -->
+                <h2>Testing URL Reference Citations</h2>
+
+                <p>
+                    This section contains various types of URLs to test the reference citation system.
+                    Here's a regular link to <a href="https://github.com/Ranchero-Software/NetNewsWire">NetNewsWire on
+                        GitHub</a>
+                    and a plain text URL: https://netnewswire.com that should be converted to a link.
+                </p>
+
+                <p>
+                    Testing tracking parameter removal with this URL:
+                    https://example.com/article?utm_source=test&utm_medium=email&utm_campaign=spring2026&ref=social
+                    and a long path URL:
+                    https://www.someverylongdomainname.com/path/to/some/very/long/article/with/many/segments/that/should/be/truncated
+                </p>
+
+                <p>
+                    Testing duplicate URLs - here's the NetNewsWire link again: https://netnewswire.com
+                    and another duplicate: <a href="https://github.com/Ranchero-Software/NetNewsWire">NetNewsWire
+                        repo</a>
+                </p>
+
+                <p>
+                    Testing custom URL schemes for iOS apps:
+                    x://user/status/123456789 for X (Twitter) app,
+                    app://open/document/12345 for a custom app scheme,
+                    and shortcuts://run-shortcut?name=MyShortcut for iOS Shortcuts.
+                </p>
+
+                <p>
+                    More test links: https://www.apple.com/newsroom and
+                    http://example.org/test (HTTP not HTTPS) and
+                    https://developer.mozilla.org/en-US/docs/Web/API/TreeWalker?retiredLocale=pl
+                </p>
+
+                <!-- Final paragraph -->
+                <h2>Wrapping Up</h2>
+
+                <p>
+                    Building a custom theme for NetNewsWire is a deeply satisfying project. You
+                    get to apply real CSS typography work to a context where it genuinely
+                    improves someone's daily reading experience. Start with the CSS custom
+                    properties, get your font stack right, then layer in the heading hierarchy,
+                    list styles, table, and code blocks one at a time.
+                </p>
+
+                <p>
+                    If you've created a theme you're proud of, the NetNewsWire community is
+                    welcoming — share it in the <a href="https://github.com/Ranchero-Software/NetNewsWire">GitHub
+                        repo</a>
+                    or the <a href="https://netnewswire.com">community forum</a> and let others
+                    enjoy your work.
+                </p>
+
+                <p><a title="Permanent link to ‘Anthropic’s New Claude Mythos Is So Good at Finding and Exploiting Vulnerabilities That They’re Not Releasing It to the Public’"
+                        href="https://daringfireball.net/linked/2026/04/08/claude-mythos-exploits">&nbsp;★&nbsp;</a></p>
+
+                </div><!-- /articleBody -->
+                <div id="footer" class="footer flow">
+                    <div class="meta">
+                        <a class="source-link" id="claudioSourceLink" href="https://example.blog/posts/rss-renaissance">Read the original</a>
+                        <div class="articleDateline">Tuesday, 17 March 2026 at 09:30</div>
+                        <div class="externalLink"><a href=""></a></div>
+                    </div>
+                </div><!-- /footer -->
+            <script>
+                // Claudio-only: reading time, source hostname and reading progress.
+                (function () {
+                    const WORDS_PER_MINUTE = 230;
+
+                    function setReadingTime() {
+                        const body = document.getElementById("bodyContainer");
+                        const target = document.getElementById("claudioReadTime");
+
+                        if (!body || !target) {
+                            return;
+                        }
+
+                        const words = (body.innerText || "").trim().split(/\s+/).filter(Boolean).length;
+
+                        if (words < 60) {
+                            document.documentElement.classList.add("claudio-no-readtime");
+                            return;
+                        }
+
+                        target.textContent = `${Math.max(1, Math.round(words / WORDS_PER_MINUTE))} min read`;
+                    }
+
+                    function setSourceLabel() {
+                        const link = document.getElementById("claudioSourceLink");
+
+                        if (!link) {
+                            return;
+                        }
+
+                        try {
+                            const url = new URL(link.getAttribute("href") || "");
+
+                            if (!/^https?:$/.test(url.protocol)) {
+                                throw new Error("Not a web link");
+                            }
+
+                            link.textContent = `Read on ${url.hostname.replace(/^www\./, "")}`;
+                        } catch {
+                            link.hidden = true;
+                        }
+                    }
+
+                    function updateProgress() {
+                        const bar = document.getElementById("claudioProgress");
+
+                        if (!bar) {
+                            return;
+                        }
+
+                        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+                        const progress = scrollable > 0 ? Math.min(1, window.scrollY / scrollable) : 0;
+                        bar.style.transform = `scaleX(${progress})`;
+                    }
+
+                    function init() {
+                        setReadingTime();
+                        setSourceLabel();
+                        updateProgress();
+                        window.addEventListener("scroll", updateProgress, { passive: true });
+                        window.addEventListener("resize", updateProgress);
+                    }
+
+                    if (document.readyState === "loading") {
+                        document.addEventListener("DOMContentLoaded", init);
+                    } else {
+                        init();
+                    }
+                })();
+            </script>
+
+
+            </article>
+
+            <script src="../scripts/template-scripts/youtube-link-rewrite.js"></script>
+            <script src="../scripts/template-scripts/linker.js"></script>
+    </body>
+
+</html>

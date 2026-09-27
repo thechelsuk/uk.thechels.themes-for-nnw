@@ -9,6 +9,7 @@ A collection of themes for [NetNewsWire](https://netnewswire.com/).
 - Thechelsuk; adaptive to device light/dark mode and is based on the thechels.uk website design
 - Retro; dark-only theme, red text.
 - Magda; dark-only theme, with gray text and custom fonts, for easy reading.
+- Claudio; dark-only theme, warm charcoal with cream text and a clay accent, using system fonts.
 
 ## Install
 
@@ -115,7 +116,7 @@ Open any `test/*.html` file in a browser. Test files reference the source script
 
 ## Files
 
-- `youtube-link-rewrite.js` - Embeds YouTube videos inline
+- `youtube-link-rewrite.js` - Embeds YouTube videos inline, plus an "Open in extension.app" link
 - `linker.js` - Extracts URLs and creates reference-style citations
 - `inject-template-scripts.sh` - Injection automation script
 
@@ -125,3 +126,9 @@ Open any `test/*.html` file in a browser. Test files reference the source script
 - The injection script is idempotent (safe to run multiple times)
 - Test files (`test/*.html`) use relative paths to source scripts
 - Template files (`*.nnwtheme/template.html`) have inline scripts
+
+## YouTube embeds
+
+YouTube rejects embeds that send no HTTP referrer (*Error 153*), and NetNewsWire sends none because articles load from a local base URL. The themes therefore embed videos via [embed.thechels.uk](https://github.com/thechelsuk/uk.thechels.embed), a static wrapper page that supplies the referrer.
+
+If the wrapper does not report back within 10 seconds of the embed scrolling into view, the iframe is replaced with a thumbnail linking to the video on YouTube.

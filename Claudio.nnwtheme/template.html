@@ -30,27 +30,102 @@ body: The body of the article.
 
 -->
 
-<div class="blog-bar">
-    <div class="blog-identity">
-        <img class="blog-avatar" id="nnwImageIcon" src="[[avatar_src]]" height=24 width=24 />
-        <div class="blog-text">
-            <div class="feedLink blog-title"><a href="[[feed_link]]">[[feed_link_title]]</a></div>
-            <div class="byline blog-slogan">[[byline]]</div>
-        </div>
-    </div>
-</div>
+<div class="claudio-progress" id="claudioProgress" aria-hidden="true"></div>
 
-<article class="flow">
-    <div class="articleTitle post-title flow">
+<header class="masthead">
+    <div class="kicker">
+        <img class="kicker-avatar" id="nnwImageIcon" src="[[avatar_src]]" height=20 width=20 alt="" />
+        <a class="kicker-feed" href="[[feed_link]]">[[feed_link_title]]</a>
+        <span class="kicker-sep" aria-hidden="true">·</span>
+        <span class="kicker-date">[[date_medium]]</span>
+        <span class="kicker-sep kicker-readtime-sep" aria-hidden="true">·</span>
+        <span class="kicker-readtime" id="claudioReadTime"></span>
+    </div>
+    <div class="articleTitle post-title">
         <h1><a href="[[preferred_link]]">[[title]]</a></h1>
     </div>
+    <div class="byline">[[byline]]</div>
+</header>
+
+<article class="flow">
     <div id="bodyContainer" class="articleBody flow [[text_size_class]]">[[body]]</div>
     <div id="footer" class="footer flow">
-        <div class="meta flow">
-            <div class="[[dateline_style]]"><a href="[[preferred_link]]">[[datetime_medium]]</a></div>
-            <div class="externalLink"><a href="[[external_link]]">[[external_link]]</a></div>
+        <div class="meta">
+            <a class="source-link" id="claudioSourceLink" href="[[preferred_link]]">Read the original</a>
+            <div class="[[dateline_style]]">[[datetime_long]]</div>
+            <div class="externalLink"><a href="[[external_link]]">[[external_link_stripped]]</a></div>
         </div>
     </div>
+    <script>
+        // Claudio-only: reading time, source hostname and reading progress.
+        (function () {
+            const WORDS_PER_MINUTE = 230;
+
+            function setReadingTime() {
+                const body = document.getElementById("bodyContainer");
+                const target = document.getElementById("claudioReadTime");
+
+                if (!body || !target) {
+                    return;
+                }
+
+                const words = (body.innerText || "").trim().split(/\s+/).filter(Boolean).length;
+
+                if (words < 60) {
+                    document.documentElement.classList.add("claudio-no-readtime");
+                    return;
+                }
+
+                target.textContent = `${Math.max(1, Math.round(words / WORDS_PER_MINUTE))} min read`;
+            }
+
+            function setSourceLabel() {
+                const link = document.getElementById("claudioSourceLink");
+
+                if (!link) {
+                    return;
+                }
+
+                try {
+                    const url = new URL(link.getAttribute("href") || "");
+
+                    if (!/^https?:$/.test(url.protocol)) {
+                        throw new Error("Not a web link");
+                    }
+
+                    link.textContent = `Read on ${url.hostname.replace(/^www\./, "")}`;
+                } catch {
+                    link.hidden = true;
+                }
+            }
+
+            function updateProgress() {
+                const bar = document.getElementById("claudioProgress");
+
+                if (!bar) {
+                    return;
+                }
+
+                const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = scrollable > 0 ? Math.min(1, window.scrollY / scrollable) : 0;
+                bar.style.transform = `scaleX(${progress})`;
+            }
+
+            function init() {
+                setReadingTime();
+                setSourceLabel();
+                updateProgress();
+                window.addEventListener("scroll", updateProgress, { passive: true });
+                window.addEventListener("resize", updateProgress);
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", init);
+            } else {
+                init();
+            }
+        })();
+    </script>
     <!-- INJECT_SCRIPTS_BEGIN -->
     <!-- This section is auto-generated from scripts/template-scripts/ -->
     <!-- To update: modify source files and run scripts/inject-template-scripts.sh -->

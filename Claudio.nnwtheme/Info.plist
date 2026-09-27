@@ -4,12 +4,12 @@
 	<key>Name</key>
 	<string>template</string>
 	<key>ThemeIdentifier</key>
-	<string>uk.thechels.themes.Magda></string>
+	<string>uk.thechels.themes.Claudio</string>
 	<key>CreatorHomePage</key>
 	<string>https://thechels.uk/</string>
 	<key>CreatorName</key>
 	<string>thechelsuk</string>
 	<key>Version</key>
-	<integer>2</integer>
+	<integer>1</integer>
 </dict>
 </plist>
