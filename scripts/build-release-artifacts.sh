@@ -14,7 +14,7 @@ if [[ -z "$REPO_SLUG" ]]; then
   exit 1
 fi
 
-# Always ship the current shared scripts, even if a commit skipped the local pre-commit hook.
+# Templates are committed with script references only; inline the shared scripts before packaging.
 "$(dirname "${BASH_SOURCE[0]}")/inject-template-scripts.sh"
 
 mkdir -p dist
