@@ -135,7 +135,7 @@ main() {
     local template_count=0
     while IFS= read -r template_file; do
         inject_into_template "$template_file"
-        ((template_count++))
+        template_count=$((template_count + 1))
     done < <(find "$PROJECT_ROOT" -type f -path "*.nnwtheme/template.html")
     
     if [[ $template_count -eq 0 ]]; then
