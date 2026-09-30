@@ -1,0 +1,39 @@
+<!doctype html><meta charset="utf-8"><title>YouTube URL cases</title>
+<!-- Self-checking cases for youtube-link-rewrite.js. Serve the repo root over http (e.g. python3 -m http.server) and open this page: every line should read PASS. -->
+<body><script>
+const cases = [
+  // [name, bodyHTML, expectedEmbedIds (in order), expectedLinkedCount]
+  ["bluesky youtu.be twice", "Watch! youtu.be/ikC-39koifI\nhttps://youtu.be/ikC-39koifI", ["ikC-39koifI"]],
+  ["scheme-less watch", "Watch my review here! youtube.com/watch?v=aFyxFE5O8c4", ["aFyxFE5O8c4"]],
+  ["https www watch in text", "YT: https://www.youtube.com/watch?v=MIgPi9wPPho", ["MIgPi9wPPho"]],
+  ["trailing punctuation", "See youtu.be/bPPfbFS9dd0.", ["bPPfbFS9dd0"]],
+  ["in parentheses", "(youtu.be/bPPfbFS9dd0)", ["bPPfbFS9dd0"]],
+  ["youtu.be with t param", "https://youtu.be/3MH-aF3_3x0?t=42", ["3MH-aF3_3x0"]],
+  ["m.youtube", "m.youtube.com/watch?v=P44pkAmbV1I", ["P44pkAmbV1I"]],
+  ["music.youtube", "https://music.youtube.com/watch?v=JcQHz43MF7U&list=x", ["JcQHz43MF7U"]],
+  ["live", "https://www.youtube.com/live/GJbrXjKN3VU", ["GJbrXjKN3VU"]],
+  ["shorts anchor", '<p><a href="https://www.youtube.com/shorts/sQtW_IPB-Yk">Short</a></p>', ["sQtW_IPB-Yk"]],
+  ["youtu.be anchor", '<p><a href="https://youtu.be/6fCvy4-QKnA">Vid</a></p>', ["6fCvy4-QKnA"]],
+  ["two videos same para", "<p>youtu.be/6fCvy4-QKnA and youtu.be/sQtW_IPB-Yk</p>", ["6fCvy4-QKnA","sQtW_IPB-Yk"]],
+  ["not youtube (word prefix)", "notyoutube.com/watch?v=6fCvy4-QKnA", []],
+  ["channel link ignored", "https://www.youtube.com/@stephenrobles", []],
+  ["bad id length", "youtu.be/abc", []],
+  ["inside code ignored", "<p><code>youtu.be/6fCvy4-QKnA</code></p>", []],
+  ["inside existing link text ignored", '<p><a href="https://example.com">youtu.be/6fCvy4-QKnA</a></p>', []],
+];
+(async () => {
+  const src = await fetch('/scripts/template-scripts/youtube-link-rewrite.js', {cache:'reload'}).then(r => r.text());
+  const results = [];
+  for (const [name, html, expected] of cases) {
+    document.body.innerHTML = '<div class="articleTitle"><h1><a href="https://example.com/post">t</a></h1></div><div id="bodyContainer">' + html + '</div>';
+    (0, eval)(src);
+    const body = document.getElementById('bodyContainer');
+    const ids = [...body.querySelectorAll('.nnw-youtube-iframe')].map(f => decodeURIComponent(f.src.split('?v=')[1]));
+    const embedsInBody = body.querySelectorAll('.nnw-youtube-embed').length;
+    const pass = JSON.stringify(ids) === JSON.stringify(expected) && embedsInBody === expected.length;
+    results.push((pass ? 'PASS ' : 'FAIL ') + name + (pass ? '' : ' got=' + JSON.stringify(ids) + ' html=' + body.innerHTML.slice(0, 300)));
+  }
+  window.harnessResults = results;
+  document.body.textContent = results.join('\n');
+})();
+</script></body>

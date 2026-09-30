@@ -71,6 +71,9 @@ A theme-specific script (such as Claudio's reading time and progress bar) can be
 
 Open any `test/*.html` file in a browser. Test pages link the theme stylesheet and the source scripts directly, so no build is needed.
 
+- `test/bluesky.html` mirrors a Bluesky RSS post: a plain-text body with scheme-less and repeated YouTube links.
+- `test/youtube-url-cases.html` runs the YouTube script against a list of URL forms and edge cases and prints PASS or FAIL for each. Serve the repo root over http (e.g. `python3 -m http.server`) to open it, as it fetches the source script.
+
 ## YouTube embeds
 
 YouTube rejects embeds that send no HTTP referrer (*Error 153*), and NetNewsWire sends none because articles load from a local base URL. The themes therefore embed videos via [embed.thechels.uk](https://github.com/thechelsuk/uk.thechels.embed), a static wrapper page that supplies the referrer.

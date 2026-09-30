@@ -8,9 +8,31 @@
     const EMBED_READY_MESSAGE = "thechels-embed-ready";
     const EMBED_TIMEOUT_MS = 10000;
     const PROCESSED_ATTRIBUTE = "data-youtube-enhanced";
+    const YOUTUBE_HOSTNAMES = [
+        "youtube.com",
+        "www.youtube.com",
+        "m.youtube.com",
+        "music.youtube.com",
+    ];
+    const YOUTUBE_PATH_PREFIXES = ["/shorts/", "/live/", "/embed/"];
+    // Plain-text YouTube URLs, with or without a scheme (e.g. Bluesky feeds).
+    const YOUTUBE_TEXT_PATTERN =
+        /(?:https?:\/\/)?(?:(?:www|m|music)\.)?(?:youtube\.com|youtu\.be)\/[^\s<>"']+/gi;
+    const TRAILING_PUNCTUATION = /[.,;:!?)\]}]+$/;
 
     function isYouTubeHostname(hostname) {
-        return hostname === "youtube.com" || hostname === "www.youtube.com";
+        return YOUTUBE_HOSTNAMES.includes(hostname);
+    }
+
+    function createVideoInfo(videoId) {
+        if (!isValidVideoId(videoId || "")) {
+            return null;
+        }
+
+        return {
+            videoId,
+            canonicalUrl: `https://www.youtube.com/watch?v=${videoId}`,
+        };
     }
 
     function isValidVideoId(videoId) {
@@ -26,42 +48,107 @@
             return null;
         }
 
+        const pathParts = url.pathname.split("/").filter(Boolean);
+
+        if (url.hostname === "youtu.be") {
+            return createVideoInfo(pathParts[0]);
+        }
+
         if (!isYouTubeHostname(url.hostname)) {
             return null;
         }
 
         if (url.pathname === "/watch") {
-            const videoId = url.searchParams.get("v");
-
-            if (!isValidVideoId(videoId || "")) {
-                return null;
-            }
-
-            return {
-                videoId,
-                canonicalUrl: `https://www.youtube.com/watch?v=${videoId}`,
-            };
+            return createVideoInfo(url.searchParams.get("v"));
         }
 
-        if (url.pathname.startsWith("/shorts/")) {
-            const pathParts = url.pathname.split("/").filter(Boolean);
-            const videoId = pathParts[1] || "";
-
-            if (!isValidVideoId(videoId)) {
-                return null;
-            }
-
-            return {
-                videoId,
-                canonicalUrl: `https://www.youtube.com/watch?v=${videoId}`,
-            };
+        if (YOUTUBE_PATH_PREFIXES.some((prefix) => url.pathname.startsWith(prefix))) {
+            return createVideoInfo(pathParts[1]);
         }
 
         return null;
     }
 
-    function getInsertionTarget(anchor) {
-        return anchor.closest("p, figure, div, li, blockquote") || anchor;
+    function toAbsoluteUrl(urlString) {
+        return /^https?:\/\//i.test(urlString) ? urlString : `https://${urlString}`;
+    }
+
+    // Turn plain-text YouTube URLs into links so they can be embedded
+    // (and picked up by linker.js as references).
+    function linkifyYouTubeText(bodyContainer) {
+        const walker = document.createTreeWalker(bodyContainer, NodeFilter.SHOW_TEXT, {
+            acceptNode(node) {
+                return node.parentElement?.closest("a, code, pre, script, style")
+                    ? NodeFilter.FILTER_REJECT
+                    : NodeFilter.FILTER_ACCEPT;
+            },
+        });
+
+        const textNodes = [];
+
+        while (walker.nextNode()) {
+            textNodes.push(walker.currentNode);
+        }
+
+        textNodes.forEach((textNode) => {
+            const text = textNode.textContent;
+            const pattern = new RegExp(YOUTUBE_TEXT_PATTERN.source, "gi");
+            const fragment = document.createDocumentFragment();
+            let lastIndex = 0;
+            let match;
+
+            while ((match = pattern.exec(text)) !== null) {
+                const start = match.index;
+
+                // Skip matches that are part of a longer word or URL (e.g. "notyoutube.com").
+                if (start > 0 && /[\w.\/@-]/.test(text[start - 1])) {
+                    continue;
+                }
+
+                const rawUrl = match[0].replace(TRAILING_PUNCTUATION, "");
+                const href = toAbsoluteUrl(rawUrl);
+
+                if (!getVideoInfo(href)) {
+                    continue;
+                }
+
+                fragment.append(text.slice(lastIndex, start));
+
+                const anchor = document.createElement("a");
+                anchor.href = href;
+                anchor.textContent = rawUrl;
+                fragment.append(anchor);
+
+                lastIndex = start + rawUrl.length;
+            }
+
+            if (lastIndex === 0) {
+                return;
+            }
+
+            fragment.append(text.slice(lastIndex));
+            textNode.replaceWith(fragment);
+        });
+    }
+
+    function insertEmbed(anchor, embedBlock) {
+        const bodyContainer = document.querySelector("#bodyContainer");
+        const block = anchor.closest("p, figure, div, li, blockquote");
+
+        // Plain-text bodies have no block around the link: add the embed at the end.
+        if (bodyContainer && block === bodyContainer) {
+            bodyContainer.appendChild(embedBlock);
+            return;
+        }
+
+        let target = block || anchor;
+
+        // Keep several embeds after the same block in document order.
+        while (target.nextElementSibling?.classList.contains("nnw-youtube-embed")) {
+            target = target.nextElementSibling;
+        }
+
+        target.insertAdjacentElement("afterend", embedBlock);
     }
 
     function createThumbnailLink(videoInfo, title) {
@@ -161,6 +248,8 @@
             return [];
         }
 
+        linkifyYouTubeText(bodyContainer);
+
         return Array.from(bodyContainer.querySelectorAll("a[href]")).filter(
             (anchor) => getVideoInfo(anchor.getAttribute("href") || ""),
         );
@@ -192,37 +281,24 @@
 
     function rewriteYouTubeLinks() {
         const anchors = getCandidateAnchors();
+        const embeddedVideoIds = new Set();
 
         anchors.forEach((anchor) => {
             if (anchor.hasAttribute(PROCESSED_ATTRIBUTE)) {
                 return;
             }
 
-            const href = anchor.getAttribute("href");
-            const videoInfo = getVideoInfo(href || "");
-
-            if (!videoInfo) {
-                return;
-            }
-
-            const insertionTarget = getInsertionTarget(anchor);
-
-            if (
-                !insertionTarget ||
-                insertionTarget.nextElementSibling?.classList.contains(
-                    "nnw-youtube-embed",
-                )
-            ) {
-                anchor.setAttribute(PROCESSED_ATTRIBUTE, "true");
-                return;
-            }
-
-            const embedBlock = createEmbedBlock(
-                videoInfo,
-                anchor.textContent.trim(),
-            );
-            insertionTarget.insertAdjacentElement("afterend", embedBlock);
             anchor.setAttribute(PROCESSED_ATTRIBUTE, "true");
+
+            const videoInfo = getVideoInfo(anchor.getAttribute("href") || "");
+
+            // One embed per video, even when a post links it more than once.
+            if (!videoInfo || embeddedVideoIds.has(videoInfo.videoId)) {
+                return;
+            }
+
+            embeddedVideoIds.add(videoInfo.videoId);
+            insertEmbed(anchor, createEmbedBlock(videoInfo, anchor.textContent.trim()));
         });
     }
 

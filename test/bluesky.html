@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Feed Test — Bluesky plain-text posts</title>
+        <link rel="stylesheet" href="../Claudio.nnwtheme/stylesheet.css" />
+    </head>
+
+    <!--
+        Bluesky RSS descriptions are plain text: no <p> or <a> tags, links often
+        without a scheme, and the same video sometimes linked twice. Each case
+        below mirrors a real post body as NetNewsWire renders it.
+    -->
+
+    <body>
+        <h2>1. youtu.be, linked twice, plain text body</h2>
+        <div id="bodyContainer" class="articleBody flow">📺 There's a new best MagSafe battery, plus I sneak in a mini AirPods 5 review and other fun accessories in today's video! youtu.be/ikC-39koifI
+https://youtu.be/ikC-39koifI</div>
+
+        <div id="footer" class="footer flow"></div>
+
+        <script src="../scripts/template-scripts/youtube-link-rewrite.js"></script>
+        <script src="../scripts/template-scripts/linker.js"></script>
+
+        <script>
+            // Expected results, checked by hand or from the console: run checkBlueskyCase().
+            window.checkBlueskyCase = function () {
+                const body = document.getElementById("bodyContainer");
+                return {
+                    embeds: body.querySelectorAll(".nnw-youtube-embed").length, // 1
+                    videoLinks: body.querySelectorAll('a[href*="youtu.be/ikC-39koifI"]').length, // 2
+                    references: document.querySelectorAll(".extracted-links li").length, // 1
+                };
+            };
+        </script>
+    </body>
+
+</html>
