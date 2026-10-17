@@ -74,6 +74,12 @@ Open any `test/*.html` file in a browser. Test pages link the theme stylesheet a
 - `test/bluesky.html` mirrors a Bluesky RSS post: a plain-text body with scheme-less and repeated YouTube links.
 - `test/youtube-url-cases.html` runs the YouTube script against a list of URL forms and edge cases and prints PASS or FAIL for each. Serve the repo root over http (e.g. `python3 -m http.server`) to open it, as it fetches the source script.
 
+## Theme showcase
+
+The repository root contains a small catalogue with live previews and NetNewsWire install links. To view it locally, serve the repository root over HTTP (for example, `python3 -m http.server`) and open `http://localhost:8000/`.
+
+The `Deploy theme showcase` workflow publishes the site to GitHub Pages when the showcase or a theme stylesheet changes. Enable GitHub Pages for the repository with **GitHub Actions** as the build and deployment source. The intended custom domain is `themes.nnw.thechels.uk`; point a Cloudflare CNAME record named `themes.nnw` to `thechelsuk.github.io`, then set the same hostname as the custom domain in the repository's Pages settings and enable HTTPS.
+
 ## YouTube embeds
 
 YouTube rejects embeds that send no HTTP referrer (*Error 153*), and NetNewsWire sends none because articles load from a local base URL. The themes therefore embed videos via [embed.thechels.uk](https://github.com/thechelsuk/uk.thechels.embed), a static wrapper page that supplies the referrer.

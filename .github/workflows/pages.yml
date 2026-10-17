@@ -1,0 +1,57 @@
+name: Deploy theme showcase
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - "index.html"
+            - "preview.html"
+            - "site.css"
+            - "site.js"
+            - "CNAME"
+            - "*.nnwtheme/**"
+            - ".github/workflows/pages.yml"
+    workflow_dispatch:
+
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+concurrency:
+    group: pages
+    cancel-in-progress: false
+
+jobs:
+    deploy:
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v7
+            - name: Configure Pages
+              uses: actions/configure-pages@v5
+            - name: Build site
+              run: |
+                  mkdir -p _site
+                  cp CNAME index.html preview.html site.css site.js _site/
+                  for theme in *.nnwtheme; do
+                      mkdir -p "_site/$theme"
+                      cp "$theme/stylesheet.css" "_site/$theme/"
+                      for font in "$theme"/*.woff; do
+                          if [ -f "$font" ]; then
+                              cp "$font" "_site/$theme/"
+                          fi
+                      done
+                  done
+                  touch _site/.nojekyll
+            - name: Upload Pages artifact
+              uses: actions/upload-pages-artifact@v4
+              with:
+                  path: _site
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
