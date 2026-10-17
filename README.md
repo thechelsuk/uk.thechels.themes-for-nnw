@@ -9,7 +9,8 @@ A collection of themes for [NetNewsWire](https://netnewswire.com/).
 - Thechelsuk; adaptive to device light/dark mode and is based on the thechels.uk website design
 - Retro; dark-only theme, red text.
 - Magda; dark-only theme, with gray text and custom fonts, for easy reading.
-- Claudio; dark-only theme, warm charcoal with cream text and a clay accent, using system fonts.
+- Claudio; adaptive theme with warm charcoal or soft parchment backgrounds and a clay accent, using system fonts.
+- Franco; adaptive theme based on Claudio with a blue accent, using system fonts.
 
 ## Install
 

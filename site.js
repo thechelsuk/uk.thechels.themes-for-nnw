@@ -2,6 +2,7 @@ if (document.documentElement.hasAttribute("data-preview-redirect")) {
     const theme = new URLSearchParams(window.location.search).get("theme");
     const previews = {
         Claudio: "claudio.html",
+        Franco: "franco.html",
         Fresh: "fresh.html",
         Guro: "guro.html",
         Magda: "magda.html",

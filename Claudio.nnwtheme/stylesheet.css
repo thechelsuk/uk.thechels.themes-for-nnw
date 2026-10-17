@@ -1,21 +1,37 @@
-/* Claudio: a warm, dark-only reading theme. Uses system fonts only. */
+/* Claudio: a warm, adaptive reading theme. Uses system fonts only. */
 
 :root {
-    color-scheme: dark;
-    --background: #1f1e1d;
-    --surface: #2a2926;
-    --surface-raised: #33312d;
-    --primary: #ece9e1;
-    --secondary: #a8a49a;
-    --muted: #7d7970;
-    --links: #e0977c;
-    --accent: #d97757;
-    --rule: #3a3833;
-    --code: #d9c9a3;
-    --selection: #d977573d;
+    color-scheme: light dark;
+    --background: #faf8f3;
+    --surface: #f1eee7;
+    --surface-raised: #e9e4da;
+    --primary: #302b25;
+    --secondary: #625b51;
+    --muted: #81786d;
+    --links: #8c4e38;
+    --accent: #b96243;
+    --rule: #ded8ce;
+    --code: #704f25;
+    --selection: #b962433d;
     --serif: "Iowan Old Style", "Charter", "Palatino", Georgia, serif;
     --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
     --mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #1f1e1d;
+        --surface: #2a2926;
+        --surface-raised: #33312d;
+        --primary: #ece9e1;
+        --secondary: #a8a49a;
+        --muted: #7d7970;
+        --links: #e0977c;
+        --accent: #d97757;
+        --rule: #3a3833;
+        --code: #d9c9a3;
+        --selection: #d977573d;
+    }
 }
 
 html {
@@ -189,7 +205,7 @@ h4, h5, h6 { font-size: 1em; color: var(--secondary); }
 .articleBody > p:first-child {
     font-size: 1.12em;
     line-height: 1.55;
-    color: #f7f4ed;
+    color: var(--primary);
 }
 
 .articleBody > p:first-of-type::first-letter {
@@ -211,7 +227,7 @@ p {
 
 a {
     color: var(--links);
-    text-decoration-color: #e0977c66;
+    text-decoration-color: var(--links);
     text-decoration-thickness: 1px;
     text-underline-offset: 0.18em;
 }
@@ -225,7 +241,7 @@ a:focus {
 strong,
 b {
     font-weight: 700;
-    color: #f7f4ed;
+    color: var(--primary);
 }
 
 em,
