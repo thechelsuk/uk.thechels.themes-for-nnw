@@ -76,7 +76,7 @@ Open any `test/*.html` file in a browser. Test pages link the theme stylesheet a
 
 ## Theme showcase
 
-The repository root contains a small catalogue with live previews and NetNewsWire install links. To view it locally, serve the repository root over HTTP (for example, `python3 -m http.server`) and open `http://localhost:8000/`.
+The repository root contains a small catalogue with live previews and NetNewsWire install links. Each preview uses the shared YouTube and reference-link scripts against a sample article based on the theme test pages. To view it locally, serve the repository root over HTTP (for example, `python3 -m http.server`) and open `http://localhost:8000/`.
 
 The `Deploy theme showcase` workflow publishes the site to GitHub Pages when the showcase or a theme stylesheet changes. Enable GitHub Pages for the repository with **GitHub Actions** as the build and deployment source. The intended custom domain is `themes.nnw.thechels.uk`; point a Cloudflare CNAME record named `themes.nnw` to `thechelsuk.github.io`, then set the same hostname as the custom domain in the repository's Pages settings and enable HTTPS.
 

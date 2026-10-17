@@ -24,12 +24,16 @@ if (document.documentElement.hasAttribute("data-theme-preview")) {
                 document.head.append(fontStylesheet);
             }
 
-            const base = document.createElement("base");
-            base.href = new URL(".", stylesheetUrl).href;
-            document.head.prepend(base);
-
             const style = document.createElement("style");
-            style.textContent = stylesheetText.replace(/^\s*@import\s+url\((['"]?)(.*?)\1\);\s*/gm, "");
+            style.textContent = stylesheetText
+                .replace(/^\s*@import\s+url\((['"]?)(.*?)\1\);\s*/gm, "")
+                .replace(/url\((['"]?)(.*?)\1\)/g, (match, quote, resource) => {
+                    if (/^(?:[a-z][a-z\d+.-]*:|\/|#)/i.test(resource)) {
+                        return match;
+                    }
+
+                    return `url("${new URL(resource, stylesheetUrl).href}")`;
+                });
             document.head.append(style);
         }
 

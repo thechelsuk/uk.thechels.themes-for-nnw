@@ -11,6 +11,7 @@ on:
             - "site.js"
             - "CNAME"
             - "*.nnwtheme/**"
+            - "scripts/template-scripts/**"
             - ".github/workflows/pages.yml"
     workflow_dispatch:
 
@@ -38,6 +39,8 @@ jobs:
               run: |
                   mkdir -p _site
                   cp CNAME index.html preview.html site.css site.js _site/
+                  mkdir -p _site/scripts/template-scripts
+                  cp scripts/template-scripts/linker.js scripts/template-scripts/youtube-link-rewrite.js _site/scripts/template-scripts/
                   for theme in *.nnwtheme; do
                       mkdir -p "_site/$theme"
                       cp "$theme/stylesheet.css" "_site/$theme/"
