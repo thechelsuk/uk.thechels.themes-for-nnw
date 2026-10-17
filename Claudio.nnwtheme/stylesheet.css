@@ -122,10 +122,15 @@ body {
 }
 
 .byline {
-    margin-top: 0.9em;
+    margin-top: 0.45em;
     font-family: var(--sans);
     font-size: 0.85em;
+    line-height: 1.35;
     color: var(--secondary);
+}
+
+.byline + .byline {
+    margin-top: 0.15em;
 }
 
 .byline:empty {
@@ -185,6 +190,15 @@ h4, h5, h6 { font-size: 1em; color: var(--secondary); }
     font-size: 1.12em;
     line-height: 1.55;
     color: #f7f4ed;
+}
+
+.articleBody > p:first-of-type::first-letter {
+    float: left;
+    padding: 0.08em 0.12em 0 0;
+    color: var(--accent);
+    font-size: 3.4em;
+    font-weight: 600;
+    line-height: 0.8;
 }
 
 p {
@@ -396,6 +410,7 @@ tbody tr:hover {
 }
 
 .meta .source-link {
+    align-self: center;
     display: inline-block;
     padding: 0.55em 1em;
     border: 1px solid var(--rule);

@@ -19,13 +19,13 @@ const cases = [
   ["channel link ignored", "https://www.youtube.com/@stephenrobles", []],
   ["bad id length", "youtu.be/abc", []],
   ["inside code ignored", "<p><code>youtu.be/6fCvy4-QKnA</code></p>", []],
-  ["inside existing link text ignored", '<p><a href="https://example.com">youtu.be/6fCvy4-QKnA</a></p>', []],
+  ["inside existing link text ignored", '<p><a href="https://thechels.uk/projects">youtu.be/6fCvy4-QKnA</a></p>', []],
 ];
 (async () => {
   const src = await fetch('/scripts/template-scripts/youtube-link-rewrite.js', {cache:'reload'}).then(r => r.text());
   const results = [];
   for (const [name, html, expected] of cases) {
-    document.body.innerHTML = '<div class="articleTitle"><h1><a href="https://example.com/post">t</a></h1></div><div id="bodyContainer">' + html + '</div>';
+    document.body.innerHTML = '<div class="articleTitle"><h1><a href="https://thechels.uk/projects/post">t</a></h1></div><div id="bodyContainer">' + html + '</div>';
     (0, eval)(src);
     const body = document.getElementById('bodyContainer');
     const ids = [...body.querySelectorAll('.nnw-youtube-iframe')].map(f => decodeURIComponent(f.src.split('?v=')[1]));
