@@ -1,48 +1,19 @@
-const themeNames = new Set(["Claudio", "Fresh", "Guro", "Magda", "Retro", "Thechelsuk"]);
-
-if (document.documentElement.hasAttribute("data-theme-preview")) {
+if (document.documentElement.hasAttribute("data-preview-redirect")) {
     const theme = new URLSearchParams(window.location.search).get("theme");
+    const previews = {
+        Claudio: "claudio.html",
+        Fresh: "fresh.html",
+        Guro: "guro.html",
+        Magda: "magda.html",
+        Retro: "retro.html",
+        Thechelsuk: "thechelsuk.html",
+    };
+    const preview = previews[theme];
 
-    if (themeNames.has(theme)) {
-        document.title = `${theme} preview — NetNewsWire Themes`;
-
-        async function loadTheme() {
-            const stylesheetUrl = new URL(`${theme}.nnwtheme/stylesheet.css`, document.baseURI);
-            const response = await fetch(stylesheetUrl);
-
-            if (!response.ok) {
-                throw new Error(`Theme stylesheet request failed with status ${response.status}`);
-            }
-
-            const stylesheetText = await response.text();
-            const imports = [...stylesheetText.matchAll(/^\s*@import\s+url\((['"]?)(.*?)\1\);/gm)];
-
-            for (const rule of imports) {
-                const fontStylesheet = document.createElement("link");
-                fontStylesheet.rel = "stylesheet";
-                fontStylesheet.href = new URL(rule[2], stylesheetUrl).href;
-                document.head.append(fontStylesheet);
-            }
-
-            const style = document.createElement("style");
-            style.textContent = stylesheetText
-                .replace(/^\s*@import\s+url\((['"]?)(.*?)\1\);\s*/gm, "")
-                .replace(/url\((['"]?)(.*?)\1\)/g, (match, quote, resource) => {
-                    if (/^(?:[a-z][a-z\d+.-]*:|\/|#)/i.test(resource)) {
-                        return match;
-                    }
-
-                    return `url("${new URL(resource, stylesheetUrl).href}")`;
-                });
-            document.head.append(style);
-        }
-
-        loadTheme().catch((error) => {
-            document.body.textContent = "Couldn't load this preview's theme stylesheet.";
-            console.error(error);
-        });
+    if (preview) {
+        window.location.replace(`test/${preview}`);
     } else {
-        document.body.textContent = "This theme preview is unavailable.";
+        document.body.textContent = "This theme preview is unavailable. Return to the theme collection.";
     }
 }
 

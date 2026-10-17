@@ -56,18 +56,12 @@ a {
     text-decoration: none;
 }
 
-.wordmark-mark {
-    display: grid;
-    width: 1.75rem;
-    height: 1.75rem;
-    place-items: center;
+.wordmark-logo {
+    display: block;
+    width: 2.65rem;
+    height: 2.65rem;
     border-radius: 50%;
-    color: white;
-    background: var(--green);
-    font-family: var(--serif);
-    font-size: 1.15rem;
-    font-style: italic;
-    letter-spacing: 0;
+    object-fit: cover;
 }
 
 .wordmark-divider {
@@ -361,11 +355,16 @@ a {
     background: #fff;
 }
 
-.theme-preview {
+.preview-image-link {
+    position: relative;
+    display: block;
+}
+
+.theme-thumbnail {
     display: block;
     width: 100%;
-    height: 300px;
-    border: 0;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
     background: #fff;
 }
 
@@ -384,8 +383,8 @@ a {
     transition: opacity 150ms ease;
 }
 
-.preview-shell:hover .preview-open,
-.preview-open:focus-visible {
+.preview-image-link:hover .preview-open,
+.preview-image-link:focus-visible .preview-open {
     opacity: 1;
 }
 
@@ -439,11 +438,17 @@ a {
     color: var(--ink);
 }
 
-.site-footer p {
+.site-footer .footer-legal {
+    flex: 1;
     margin: 0;
-    font-family: var(--serif);
-    font-size: 0.88rem;
-    font-style: italic;
+    font-size: 0.72rem;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.footer-legal a {
+    color: inherit;
+    text-underline-offset: 0.2em;
 }
 
 :focus-visible {
@@ -480,10 +485,6 @@ a {
         min-height: 0;
     }
 
-    .theme-preview {
-        height: 320px;
-    }
-
     .preview-open {
         opacity: 1;
     }
@@ -498,8 +499,10 @@ a {
         justify-content: flex-start;
     }
 
-    .site-footer p {
-        display: none;
+    .site-footer .footer-legal {
+        flex: 1 0 100%;
+        order: 3;
+        text-align: left;
     }
 
     .site-footer > a:last-child {

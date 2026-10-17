@@ -7,10 +7,14 @@ on:
         paths:
             - "index.html"
             - "preview.html"
+            - "preview-nav.css"
             - "site.css"
             - "site.js"
+            - "assets/**"
+            - "LICENSE.md"
             - "CNAME"
             - "*.nnwtheme/**"
+            - "test/*.html"
             - "scripts/template-scripts/**"
             - ".github/workflows/pages.yml"
     workflow_dispatch:
@@ -38,7 +42,9 @@ jobs:
             - name: Build site
               run: |
                   mkdir -p _site
-                  cp CNAME index.html preview.html site.css site.js _site/
+                  cp CNAME index.html preview.html preview-nav.css site.css site.js LICENSE.md _site/
+                  cp -R assets _site/assets
+                  cp -R test _site/test
                   mkdir -p _site/scripts/template-scripts
                   cp scripts/template-scripts/linker.js scripts/template-scripts/youtube-link-rewrite.js _site/scripts/template-scripts/
                   for theme in *.nnwtheme; do
