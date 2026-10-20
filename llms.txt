@@ -1,0 +1,61 @@
+# NetNewsWire Themes by thechelsuk
+
+> Ten free, open-source reading themes for NetNewsWire, the RSS reader for Mac, iPhone and iPad. Each theme can be previewed in the browser and added to NetNewsWire in one tap.
+
+Key facts:
+
+- Price: free; MIT License
+- Install: select Add theme on the site, or download the theme's zip from the latest GitHub release and open the .nnwtheme file
+- Modes: adaptive (follows light/dark), light-only or dark-only
+- YouTube videos play inside articles via embed.thechels.uk
+- Made by thechelsuk (https://thechels.uk); not affiliated with or endorsed by NetNewsWire
+
+## Themes
+
+- [Claudio](https://themes-nnw.thechels.uk/test/claudio.html) (adaptive): Warm charcoal, soft cream, and a hint of clay. A quiet, considered space for long reads.
+- [Fresh](https://themes-nnw.thechels.uk/test/fresh.html) (light): A bright, easygoing palette inspired by a fresh morning on the web.
+- [Guro](https://themes-nnw.thechels.uk/test/guro.html) (light): Clean lines, generous breathing room, and a little colour where it counts.
+- [Magda](https://themes-nnw.thechels.uk/test/magda.html) (dark): A dark, easy-reading theme with custom type and a calm, understated palette.
+- [Retro](https://themes-nnw.thechels.uk/test/retro.html) (dark): A dark page with unmistakable red type. For readers who like a little edge.
+- [thechelsuk](https://themes-nnw.thechels.uk/test/thechelsuk.html) (adaptive): A familiar look drawn from thechels.uk, adapting to your device's light or dark setting.
+- [Franco](https://themes-nnw.thechels.uk/test/franco.html) (adaptive): Claudio's warm editorial feel with a crisp blue accent, adapting to light and dark mode.
+- [Micha](https://themes-nnw.thechels.uk/test/micha.html) (adaptive): Primary colours, honest geometry and a strong grid. A Bauhaus poster you can read.
+- [Maika](https://themes-nnw.thechels.uk/test/maika.html) (adaptive): Washi paper, sumi ink and a vermilion seal. Japanese minimalism with room to breathe.
+- [Sunjiyo](https://themes-nnw.thechels.uk/test/sunjiyo.html) (adaptive): A sky that follows the hour each post was published, from dawn light to a crescent moon.
+
+## Links
+
+- [Theme showcase](https://themes-nnw.thechels.uk/): previews and one-tap install links
+- [Latest release](https://github.com/thechelsuk/uk.thechels.themes.nnw/releases/latest): download every theme as a zip
+- [NetNewsWire](https://netnewswire.com/): the free RSS reader the themes are made for
+- [Source on GitHub](https://github.com/thechelsuk/uk.thechels.themes.nnw)
+
+## FAQ
+
+### How do I install a theme?
+
+Select Add theme on any theme to open it in NetNewsWire. You can also download the theme's zip from the latest GitHub release, unzip it and open the .nnwtheme file.
+
+### Are the themes free?
+
+Yes. All ten themes are free and open source under the MIT License.
+
+### Do the themes work in dark mode?
+
+Claudio, Franco, Micha, Maika, Sunjiyo and thechelsuk adapt to your device's light or dark setting. Fresh and Guro are light themes, and Magda and Retro are dark.
+
+### Can I preview a theme before installing it?
+
+Yes. Select a theme's screenshot to open a full live preview of an article, including YouTube embeds and reference links.
+
+### Do YouTube videos play inside articles?
+
+Yes. The themes embed YouTube videos through embed.thechels.uk, which supplies the referrer YouTube requires, so videos play inside NetNewsWire.
+
+### How do I change themes later?
+
+You can switch theme at any time in NetNewsWire's settings.
+
+## Optional
+
+- [More from thechelsuk](https://thechels.uk/projects): apps and other projects

@@ -13,6 +13,10 @@ on:
             - "assets/**"
             - "LICENSE.md"
             - "CNAME"
+            - "robots.txt"
+            - "sitemap.xml"
+            - "llms.txt"
+            - "favicon.ico"
             - "*.nnwtheme/**"
             - "test/*.html"
             - "scripts/template-scripts/**"
@@ -42,7 +46,7 @@ jobs:
             - name: Build site
               run: |
                   mkdir -p _site
-                  cp CNAME index.html preview.html preview-nav.css site.css site.js LICENSE.md _site/
+                  cp CNAME index.html preview.html preview-nav.css site.css site.js LICENSE.md robots.txt sitemap.xml llms.txt favicon.ico _site/
                   cp -R assets _site/assets
                   cp -R test _site/test
                   mkdir -p _site/scripts/template-scripts
