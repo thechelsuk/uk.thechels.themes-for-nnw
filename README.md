@@ -11,6 +11,9 @@ A collection of themes for [NetNewsWire](https://netnewswire.com/).
 - Magda; dark-only theme, with gray text and custom fonts, for easy reading.
 - Claudio; adaptive theme with warm charcoal or soft parchment backgrounds and a clay accent, using system fonts.
 - Franco; adaptive theme based on Claudio with a blue accent, using system fonts.
+- Micha; adaptive Bauhaus / geometric modernist theme with primary colours, a sticky detail rail on wide windows and numbered sections.
+- Maika; adaptive Japanese minimalist theme with washi and sumi tones, a hanko seal from the feed's initial and a vertical scroll line.
+- Sunjiyo; adaptive sunlit theme whose sky follows the hour a post was published, with an auto contents list and a progress dial.
 
 ## Install
 

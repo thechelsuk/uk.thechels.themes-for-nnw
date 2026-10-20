@@ -6,7 +6,10 @@ if (document.documentElement.hasAttribute("data-preview-redirect")) {
         Fresh: "fresh.html",
         Guro: "guro.html",
         Magda: "magda.html",
+        Maika: "maika.html",
+        Micha: "micha.html",
         Retro: "retro.html",
+        Sunjiyo: "sunjiyo.html",
         Thechelsuk: "thechelsuk.html",
     };
     const preview = previews[theme];

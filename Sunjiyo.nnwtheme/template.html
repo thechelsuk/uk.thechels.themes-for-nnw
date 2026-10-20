@@ -1,0 +1,235 @@
+<!-- Template Variables
+
+title: The title of the article
+preferred_link: The best link to associate with the article for linking out.
+
+external_link_label: A localized label for the external link.
+external_link_stripped: The external link minus the scheme. Useful for displaying the external link.
+external_link: The external link of the article if there is one provided by the author.
+
+feed_link_title: The name of the feed associated with this article.
+feed_link: The URL of the feed associated with this article.
+byline: HTML that combines all the authors and links to them if available.
+avatar_src: The image source URL for the feed icon / avatar.
+dateline_style: Either "articleDateline" or "articleDatelineTitle" depending on if the title was populated or not.
+
+datetime_long: Long version of a combined publish date and time.
+datetime_medium: Medium length version of a combined publish date and time.
+datetime_short: Short version of a combined publish date and time.
+
+date_long: Long version of the publish date.
+date_medium: Medium version of the publish date.
+date_short: Long version of the publish date.
+
+time_long: Long version of the publish time.
+time_medium: Medium version of the publish time.
+time_short: Long version of the publish time.
+
+text_size_class: The size class that the user has selected in Preferences for article text.
+body: The body of the article.
+
+-->
+
+
+<header class="masthead sunjiyo-sky" id="sunjiyoSky" data-time="[[time_short]]">
+    <div class="sunjiyo-orb" aria-hidden="true"></div>
+    <div class="sunjiyo-horizon" aria-hidden="true"></div>
+    <div class="sunjiyo-kicker">
+        <img class="sunjiyo-avatar" id="nnwImageIcon" src="[[avatar_src]]" height=20 width=20 alt="" />
+        <a class="sunjiyo-feed" href="[[feed_link]]">[[feed_link_title]]</a>
+    </div>
+    <div class="articleTitle post-title">
+        <h1><a href="[[preferred_link]]">[[title]]</a></h1>
+    </div>
+    <div class="sunjiyo-meta">
+        <span class="sunjiyo-chip sunjiyo-edition" id="sunjiyoEdition"></span>
+        <span class="sunjiyo-chip sunjiyo-date">[[date_medium]]</span>
+        <span class="sunjiyo-chip sunjiyo-readtime" id="sunjiyoReadTime"></span>
+    </div>
+</header>
+
+<div class="byline sunjiyo-byline">[[byline]]</div>
+
+<article class="sunjiyo-article">
+    <nav class="sunjiyo-contents" id="sunjiyoContents" aria-label="Contents" hidden>
+        <details id="sunjiyoContentsDetails">
+            <summary>On this page</summary>
+            <ol id="sunjiyoContentsList"></ol>
+        </details>
+    </nav>
+    <div id="bodyContainer" class="articleBody [[text_size_class]]">[[body]]</div>
+    <div id="footer" class="footer">
+        <div class="meta">
+            <a class="source-link" id="sunjiyoSourceLink" href="[[preferred_link]]">Read the original</a>
+            <div class="externalLink"><a href="[[external_link]]">[[external_link_stripped]]</a></div>
+        </div>
+    </div>
+    <script>
+        // Sunjiyo-only: time-of-day sky, reading time, contents, source hostname and progress dial.
+        (function () {
+            const WORDS_PER_MINUTE = 230;
+            const EDITIONS = {
+                dawn: "Dawn edition",
+                day: "Daylight edition",
+                dusk: "Dusk edition",
+                night: "Night edition",
+            };
+
+            // Reads the publish time NetNewsWire provides ("9:30 PM", "21:30", "21.30"), falling back to now.
+            function publishedHour(text) {
+                const match = /(\d{1,2})(?:[:.h](\d{2}))?\s*([ap])\.?\s*m?\.?/i.exec(text || "") || /(\d{1,2})[:.h](\d{2})/.exec(text || "");
+
+                if (!match) {
+                    return new Date().getHours();
+                }
+
+                let hour = Number(match[1]) % 24;
+                const meridiem = (match[3] || "").toLowerCase();
+
+                if (meridiem === "p" && hour < 12) {
+                    hour += 12;
+                } else if (meridiem === "a" && hour === 12) {
+                    hour = 0;
+                }
+
+                return hour;
+            }
+
+            function phaseFor(hour) {
+                if (hour >= 5 && hour < 9) {
+                    return "dawn";
+                }
+
+                if (hour >= 9 && hour < 17) {
+                    return "day";
+                }
+
+                if (hour >= 17 && hour < 20) {
+                    return "dusk";
+                }
+
+                return "night";
+            }
+
+            function setSky() {
+                const sky = document.getElementById("sunjiyoSky");
+                const edition = document.getElementById("sunjiyoEdition");
+                const phase = phaseFor(publishedHour(sky?.dataset.time));
+
+                document.documentElement.dataset.sunjiyoPhase = phase;
+
+                if (edition) {
+                    edition.textContent = EDITIONS[phase];
+                }
+            }
+
+            function setReadingTime() {
+                const body = document.getElementById("bodyContainer");
+                const target = document.getElementById("sunjiyoReadTime");
+
+                if (!body || !target) {
+                    return;
+                }
+
+                const words = (body.innerText || "").trim().split(/\s+/).filter(Boolean).length;
+
+                if (words < 60) {
+                    target.hidden = true;
+                    return;
+                }
+
+                target.textContent = `${Math.max(1, Math.round(words / WORDS_PER_MINUTE))} min read`;
+            }
+
+            function buildContents() {
+                const nav = document.getElementById("sunjiyoContents");
+                const details = document.getElementById("sunjiyoContentsDetails");
+                const list = document.getElementById("sunjiyoContentsList");
+                const headings = [...document.querySelectorAll("#bodyContainer h2")].filter((heading) => heading.textContent.trim());
+
+                if (!nav || !details || !list || headings.length < 3) {
+                    return;
+                }
+
+                // Buttons rather than #fragment links, so NetNewsWire never treats them as navigation.
+                for (const heading of headings) {
+                    const item = document.createElement("li");
+                    const button = document.createElement("button");
+                    button.type = "button";
+                    button.textContent = heading.textContent.trim();
+                    button.addEventListener("click", () => heading.scrollIntoView({ behavior: "smooth", block: "start" }));
+                    item.appendChild(button);
+                    list.appendChild(item);
+                }
+
+                nav.hidden = false;
+
+                const wide = window.matchMedia("(min-width: 1080px)");
+                details.open = wide.matches;
+                wide.addEventListener?.("change", (event) => {
+                    details.open = event.matches;
+                });
+            }
+
+            function setSourceLabel() {
+                const link = document.getElementById("sunjiyoSourceLink");
+
+                if (!link) {
+                    return;
+                }
+
+                try {
+                    const url = new URL(link.getAttribute("href") || "");
+
+                    if (!/^https?:$/.test(url.protocol)) {
+                        throw new Error("Not a web link");
+                    }
+
+                    link.textContent = `Read on ${url.hostname.replace(/^www\./, "")}`;
+                } catch {
+                    link.hidden = true;
+                }
+            }
+
+            function updateProgress() {
+                const dial = document.getElementById("sunjiyoDial");
+
+                if (!dial) {
+                    return;
+                }
+
+                const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = scrollable > 0 ? Math.min(1, window.scrollY / scrollable) : 0;
+                dial.style.setProperty("--progress", progress.toFixed(4));
+                dial.classList.toggle("is-visible", scrollable > window.innerHeight * 0.5 && window.scrollY > 80);
+            }
+
+            function init() {
+                setSky();
+                setReadingTime();
+                buildContents();
+                setSourceLabel();
+
+                const dial = document.getElementById("sunjiyoDial");
+                dial?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+                updateProgress();
+                window.addEventListener("scroll", updateProgress, { passive: true });
+                window.addEventListener("resize", updateProgress);
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", init);
+            } else {
+                init();
+            }
+        })();
+    </script>
+    <!-- INJECT_SCRIPTS_BEGIN -->
+    <!-- Inlined by CI at release: scripts/inject-template-scripts.sh -->
+    <script src="youtube-link-rewrite.js"></script>
+    <script src="linker.js"></script>
+    <!-- INJECT_SCRIPTS_END -->
+</article>
+
+<button class="sunjiyo-dial" id="sunjiyoDial" type="button" aria-label="Back to top"><span aria-hidden="true">↑</span></button>
