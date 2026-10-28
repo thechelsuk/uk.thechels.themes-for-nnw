@@ -40,8 +40,9 @@ Themes are only built in CI. Install themes from a release, not from the reposit
 
 1. Create a new `name.nnwtheme` folder in the repo root containing at minimum `Info.plist`, `stylesheet.css`, and `template.html`.
 2. Add the script markers to `template.html` (see below).
-3. Add a `test/name.html` page that links the theme's stylesheet and the source scripts.
-4. No workflow changes needed — it discovers all `*.nnwtheme` folders automatically.
+3. Add a `test/name.html` page that links the theme's stylesheet and the source scripts. Copy the `<head>` of an existing preview page so it has a description, canonical URL, and Open Graph and X (Twitter) tags. Match the stylesheet path's capitalisation to the folder name exactly: GitHub Pages is case-sensitive, even though macOS isn't.
+4. Add the preview page to `sitemap.xml`, and add the theme to the structured data and theme cards in `index.html` and to `llms.txt`.
+5. No workflow changes needed — it discovers all `*.nnwtheme` folders automatically.
 
 ## Shared scripts
 
