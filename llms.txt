@@ -26,9 +26,9 @@ Key facts:
 ## Links
 
 - [Theme showcase](https://themes-nnw.thechels.uk/): previews and one-tap install links
-- [Latest release](https://github.com/thechelsuk/uk.thechels.themes-for-nnw/releases/latest): download every theme as a zip
+- [Latest release](https://github.com/thechelsuk/uk.thechels.themes-nnw/releases/latest): download every theme as a zip
 - [NetNewsWire](https://netnewswire.com/): the free RSS reader the themes are made for
-- [Source on GitHub](https://github.com/thechelsuk/uk.thechels.themes-for-nnw)
+- [Source on GitHub](https://github.com/thechelsuk/uk.thechels.themes-nnw)
 
 ## FAQ
 

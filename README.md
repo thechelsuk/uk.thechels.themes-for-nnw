@@ -17,7 +17,7 @@ A collection of themes for [NetNewsWire](https://netnewswire.com/).
 
 ## Install
 
-1. Go to the [latest release](https://github.com/thechelsuk/uk.thechels.themes-for-nnw/releases/latest).
+1. Go to the [latest release](https://github.com/thechelsuk/uk.thechels.themes-nnw/releases/latest).
 2. Download the `.zip` for your chosen theme, unzip it, and open the `.nnwtheme` file directly.
 
 ## Release a new version
